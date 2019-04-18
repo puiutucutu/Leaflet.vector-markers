@@ -40,7 +40,7 @@ class Icon extends Leaflet.Icon {
     div.innerHTML = `<svg width="${options.iconSize[0]}px" height="${options.iconSize[1]}px" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pin_path}" fill="${options.markerColor}"></path></svg>`
 
     if (options.icon) {
-      div.appendChild(this._createInner());
+      div.appendChild(this.createInner());
     }
 
     options.className +=
@@ -48,18 +48,21 @@ class Icon extends Leaflet.Icon {
         ? " " + options.extraDivClasses
         : options.extraDivClasses;
 
-    this._setIconStyles(div, "icon");
-    this._setIconStyles(div, `icon-${options.markerColor}`);
+    this.setIconStyles(div, "icon");
+    this.setIconStyles(div, `icon-${options.markerColor}`);
     return div;
   }
 
   createShadow() {
     const div = document.createElement("div");
-    this._setIconStyles(div, "shadow");
+    this.setIconStyles(div, "shadow");
     return div;
   }
 
-  _createInner() {
+  /**
+   * @private
+   */
+  createInner() {
     const i = document.createElement("i");
     const options = this.options;
 
@@ -92,7 +95,12 @@ class Icon extends Leaflet.Icon {
     return i;
   }
 
-  _setIconStyles(img, name) {
+  /**
+   * @private
+   * @param {HTMLElement} img
+   * @param {String} name
+   */
+  setIconStyles(img, name) {
     const options = this.options;
     const size = Leaflet.point(
       options[name === "shadow" ? "shadowSize" : "iconSize"]
