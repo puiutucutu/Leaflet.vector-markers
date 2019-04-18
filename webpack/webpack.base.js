@@ -33,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "assets/[name].[hash:8].css"
+      filename: "dist/[name].[hash:8].css"
     }),
     new CleanWebpackPlugin(["dist"], {
       root: rootPath
