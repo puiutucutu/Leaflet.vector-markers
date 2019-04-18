@@ -1,11 +1,11 @@
-import Icon from "./Icon";
+import { Icon } from "./Icon";
 
-export default {
-  version: "1.0.0",
-
-  Icon: Icon,
-
+const VectorMarkers = {
+  Icon,
   icon: function(options) {
     return new Icon(options);
-  }
+  },
+  version: "1.0.0"
 };
+
+export { VectorMarkers };

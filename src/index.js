@@ -1,6 +1,7 @@
 import L from "leaflet";
-import VectorMarkers from "./VectorMarkers";
-export VectorMarkers from "./VectorMarkers";
-export Icon from "./Icon";
+import { Icon } from "./Icon";
+import { VectorMarkers } from "./VectorMarkers";
 
 L.VectorMarkers = VectorMarkers;
+
+export { Icon, VectorMarkers };
