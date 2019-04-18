@@ -1,5 +1,5 @@
 import Leaflet from "leaflet";
-import { mapPin } from "./mapPin";
+import * as mapPins from "./mapPins";
 
 const iconOptions = {
   // options available in L.Marker
@@ -19,9 +19,9 @@ const iconOptions = {
   iconColor: "white",
 
   // customisation of map pin options
-  mapPin: "",
   markerColor: "blue",
-  viewBox: "0 0 32 52"
+  mapPin: mapPins.original.d,
+  viewBox: mapPins.original.viewBox
 };
 
 class Icon extends Leaflet.Icon {
@@ -37,10 +37,10 @@ class Icon extends Leaflet.Icon {
         ? oldIcon
         : document.createElement("div");
     const options = this.options;
-    const pin_path = options.mapPin || mapPin;
+    const pinPath = options.mapPin;
 
     // prettier-ignore
-    div.innerHTML = `<svg width="${options.iconSize[0]}px" height="${options.iconSize[1]}px" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pin_path}" fill="${options.markerColor}"></path></svg>`
+    div.innerHTML = `<svg width="${options.iconSize[0]}px" height="${options.iconSize[1]}px" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pinPath}" fill="${options.markerColor}"></path></svg>`
 
     if (options.icon) {
       div.appendChild(this.createInner());
