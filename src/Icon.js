@@ -61,7 +61,7 @@ class Icon extends Leaflet.Icon {
     const i = document.createElement("i");
     const options = this.options;
 
-    // leaflet will error if an empty prefix is supplied as in `""`
+    // leaflet will error if an empty prefix is supplied, as in `""`
     if (!!options.prefix) {
       i.classList.add(options.prefix);
     }
