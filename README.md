@@ -5,11 +5,17 @@ Vector SVG markers for Leaflet, with an option for Font Awesome/Twitter Bootstra
 
 Thanks to https://github.com/lvoogdt for https://github.com/lvoogdt/Leaflet.awesome-markers.
 
-Version 0.0.6 of Leaflet.vector-markers is tested with:
+The original codebase worked for any icon set that relied on using an `<i class="fa fa-car">{...}</i>` to render an icon (most often from a font file). 
+
+With that said, it is known to work on icons from:
 - Bootstrap 3
-- Font Awesome 4.3
-- Leaflet 0.7.7
+- Font Awesome 4.7
 - Maki icon 0.4.2
+
+It is known to work with Leaflet from at least `v0.7.7` and up.
+
+
+@TODO Review remaining readme
 
 ## Example
 
