@@ -1,9 +1,0 @@
-.idea
-node_modules
-__tests__
-coverage
-examples
-.editorconfig
-.travis.yml
-bower.json
-webpack.config.js
