@@ -46,6 +46,7 @@ export default class Icon extends Leaflet.Icon {
       options.className.length > 0
         ? " " + options.extraDivClasses
         : options.extraDivClasses;
+
     this._setIconStyles(div, "icon");
     this._setIconStyles(div, `icon-${options.markerColor}`);
     return div;
