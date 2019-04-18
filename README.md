@@ -14,6 +14,12 @@ With that said, it is known to work on icons from:
 
 It is known to work with Leaflet from at least `v0.7.7` and up.
 
+The additional desired functionality is:
+ 
+* to allow importing of svg icons
+* to allow svg icons to embed properly inside an svg Leaflet marker
+* to allow svg icons standalone to act as the Leaflet marker
+
 
 @TODO Review remaining readme
 
