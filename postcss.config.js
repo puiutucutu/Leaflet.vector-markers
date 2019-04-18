@@ -6,6 +6,6 @@ module.exports = {
       },
       stage: 2
     },
-    "cssnano": {}
+    cssnano: {}
   }
 };
