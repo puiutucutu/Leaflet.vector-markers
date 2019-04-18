@@ -22,12 +22,24 @@ module.exports = {
   devtool: isDevelopment ? "source-map" : "none", // `source-map` shows the file and line number of an error
   entry: [
     "@babel/polyfill", // emulates ES2015 environment for browsers on runtime
-    path.resolve("src", "src", "index.js")
+    path.resolve("src", "index.js")
   ],
   output: {
-    filename: "dist/[name].bundle.js",
-    path: buildPath
+    filename: "[name].bundle.js",
+    path: buildPath,
+    library: "VectorMarkers",
+    libraryTarget: "umd"
   },
+  externals: [
+    {
+      leaflet: {
+        amd: "leaflet",
+        commonjs: "leaflet",
+        commonjs2: "leaflet",
+        root: "L"
+      }
+    }
+  ],
   resolve: {
     extensions: [".js"]
   },
@@ -35,9 +47,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "dist/[name].[hash:8].css"
     }),
-    new CleanWebpackPlugin(["dist"], {
-      root: rootPath
-    })
+    new CleanWebpackPlugin()
   ],
   module: {
     rules: [
