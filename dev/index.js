@@ -11,12 +11,20 @@ L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   minZoom: 5
 }).addTo(map);
 
-// creates a red marker with the coffee icon
-const RedMarker = VectorMarkers.icon({
+const RedCoffeeMarker = VectorMarkers.icon({
   icon: "coffee",
   markerColor: "red"
 });
 
-L.marker(coords, { icon: RedMarker, draggable: true })
+const GreenCarMarker = VectorMarkers.icon({
+  icon: "car",
+  markerColor: "green"
+});
+
+L.marker(coords, { icon: RedCoffeeMarker, draggable: true })
+  .addTo(map)
+  .bindPopup("sample popup");
+
+L.marker([48.155, 11.543], { icon: GreenCarMarker, draggable: true })
   .addTo(map)
   .bindPopup("sample popup");
