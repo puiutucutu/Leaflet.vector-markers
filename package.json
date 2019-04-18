@@ -10,7 +10,7 @@
   "scripts": {
     "clean:lib": "rm -Rf ./lib",
     "compile:lib": "babel src --out-dir lib",
-    "build:lib": "npm run clean:lib && npm run compile:lib",
+    "build:lib": "npm run compile:lib",
     "build:dist": "webpack src/index.js dist/leaflet-vector-markers.js && webpack -p src/index.js dist/leaflet-vector-markers.min.js && webpack src/leaflet-vector-markers.scss dist/leaflet-vector-markers.css",
     "build": "npm run build:lib && npm run build:dist",
     "watch": "babel src --watch --out-dir lib",
