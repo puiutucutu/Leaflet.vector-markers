@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
 
     <!-- Load Leaflet -->
     <link
@@ -38,9 +42,17 @@
     <div id="mapContainer"></div>
   </body>
   <script type="application/javascript">
-    const leafletMap = L.map("mapContainer").setView([51.505, -0.09], 13);
+    const map = L.map("mapContainer").setView([48.1351, 11.582], 13);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       minZoom: 5
-    }).addTo(leafletMap);
+    }).addTo(map);
+
+    // creates a red marker with the coffee icon
+    const RedMarker = L.VectorMarkers.icon({
+      icon: "coffee",
+      markerColor: "red"
+    });
+
+    L.marker([48.15491, 11.54183], { icon: RedMarker }).addTo(map);
   </script>
 </html>
