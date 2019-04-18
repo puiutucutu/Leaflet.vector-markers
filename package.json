@@ -8,7 +8,7 @@
     "url": "https://github.com/hiasinho/Leaflet.vector-markers.git"
   },
   "scripts": {
-    "build:dist": "cross-env NODE_ENV=development webpack --progress --config ./webpack/webpack.base.js",
+    "build:dist": "cross-env NODE_ENV=development webpack --progress --config ./webpack/webpack.base.js"
   },
   "dependencies": {
     "leaflet": "^1.4.0"
