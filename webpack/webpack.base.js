@@ -20,12 +20,14 @@ const buildPath = path.resolve("dist");
 module.exports = {
   mode: isDevelopment ? "development" : "production",
   devtool: isDevelopment ? "source-map" : "none", // `source-map` shows the file and line number of an error
-  entry: [
-    "@babel/polyfill", // emulates ES2015 environment for browsers on runtime
-    path.resolve("src", "index.js")
-  ],
+  entry: {
+    "leaflet-vector-markers": [
+      "@babel/polyfill", // emulates ES2015 environment for browsers on runtime
+      path.resolve("src", "index.js")
+    ]
+  },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].js",
     path: buildPath,
     library: "VectorMarkers",
     libraryTarget: "umd"
@@ -45,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "dist/[name].[hash:8].css"
+      filename: "[name].css"
     }),
     new CleanWebpackPlugin()
   ],
