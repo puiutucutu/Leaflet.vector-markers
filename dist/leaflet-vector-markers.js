@@ -1,262 +1,353 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("leaflet"));
-	else if(typeof define === 'function' && define.amd)
-		define(["leaflet"], factory);
-	else if(typeof exports === 'object')
-		exports["VectorMarkers"] = factory(require("leaflet"));
-	else
-		root["VectorMarkers"] = factory(root["L"]);
+  if (typeof exports === "object" && typeof module === "object")
+    module.exports = factory(require("leaflet"));
+  else if (typeof define === "function" && define.amd)
+    define(["leaflet"], factory);
+  else if (typeof exports === "object")
+    exports["VectorMarkers"] = factory(require("leaflet"));
+  else root["VectorMarkers"] = factory(root["L"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+  return /******/ (function(modules) {
+    // webpackBootstrap
+    /******/ // The module cache
+    /******/ var installedModules = {}; // The require function
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+    /******/ /******/ function __webpack_require__(moduleId) {
+      /******/ // Check if module is in cache
+      /******/ if (installedModules[moduleId])
+        /******/ return installedModules[moduleId].exports; // Create a new module (and put it into the cache)
 
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
+      /******/ /******/ var module = (installedModules[moduleId] = {
+        /******/ exports: {},
+        /******/ id: moduleId,
+        /******/ loaded: false
+        /******/
+      }); // Execute the module function
 
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
+      /******/ /******/ modules[moduleId].call(
+        module.exports,
+        module,
+        module.exports,
+        __webpack_require__
+      ); // Flag the module as loaded
 
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+      /******/ /******/ module.loaded = true; // Return the exports of the module
 
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
+      /******/ /******/ return module.exports;
+      /******/
+    } // expose the modules object (__webpack_modules__)
 
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+    /******/ /******/ __webpack_require__.m = modules; // expose the module cache
 
+    /******/ /******/ __webpack_require__.c = installedModules; // __webpack_public_path__
 
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
+    /******/ /******/ __webpack_require__.p = ""; // Load entry module and return exports
 
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
+    /******/ /******/ return __webpack_require__(0);
+    /******/
+  })(
+    /************************************************************************/
+    /******/ [
+      /* 0 */
+      /***/ function(module, exports, __webpack_require__) {
+        "use strict";
 
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+        Object.defineProperty(exports, "__esModule", {
+          value: true
+        });
+        exports.Icon = exports.VectorMarkers = undefined;
 
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ function(module, exports, __webpack_require__) {
+        var _leaflet = __webpack_require__(1);
 
-	'use strict';
+        var _leaflet2 = _interopRequireDefault(_leaflet);
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Icon = exports.VectorMarkers = undefined;
+        var _VectorMarkers2 = __webpack_require__(2);
 
-	var _leaflet = __webpack_require__(1);
+        var _VectorMarkers3 = _interopRequireDefault(_VectorMarkers2);
 
-	var _leaflet2 = _interopRequireDefault(_leaflet);
+        var _Icon2 = __webpack_require__(3);
 
-	var _VectorMarkers2 = __webpack_require__(2);
+        var _Icon3 = _interopRequireDefault(_Icon2);
 
-	var _VectorMarkers3 = _interopRequireDefault(_VectorMarkers2);
+        function _interopRequireDefault(obj) {
+          return obj && obj.__esModule ? obj : { default: obj };
+        }
 
-	var _Icon2 = __webpack_require__(3);
+        exports.VectorMarkers = _VectorMarkers3.default;
+        exports.Icon = _Icon3.default;
 
-	var _Icon3 = _interopRequireDefault(_Icon2);
+        _leaflet2.default.VectorMarkers = _VectorMarkers3.default;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        /***/
+      },
+      /* 1 */
+      /***/ function(module, exports) {
+        module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-	exports.VectorMarkers = _VectorMarkers3.default;
-	exports.Icon = _Icon3.default;
+        /***/
+      },
+      /* 2 */
+      /***/ function(module, exports, __webpack_require__) {
+        "use strict";
 
+        Object.defineProperty(exports, "__esModule", {
+          value: true
+        });
 
-	_leaflet2.default.VectorMarkers = _VectorMarkers3.default;
+        var _Icon = __webpack_require__(3);
 
-/***/ },
-/* 1 */
-/***/ function(module, exports) {
+        var _Icon2 = _interopRequireDefault(_Icon);
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+        function _interopRequireDefault(obj) {
+          return obj && obj.__esModule ? obj : { default: obj };
+        }
 
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
+        exports.default = {
+          version: "1.0.0",
 
-	'use strict';
+          Icon: _Icon2.default,
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+          icon: function icon(options) {
+            return new _Icon2.default(options);
+          }
+        };
 
-	var _Icon = __webpack_require__(3);
+        /***/
+      },
+      /* 3 */
+      /***/ function(module, exports, __webpack_require__) {
+        "use strict";
 
-	var _Icon2 = _interopRequireDefault(_Icon);
+        Object.defineProperty(exports, "__esModule", {
+          value: true
+        });
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+        var _createClass = (function() {
+          function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+              var descriptor = props[i];
+              descriptor.enumerable = descriptor.enumerable || false;
+              descriptor.configurable = true;
+              if ("value" in descriptor) descriptor.writable = true;
+              Object.defineProperty(target, descriptor.key, descriptor);
+            }
+          }
+          return function(Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+          };
+        })();
 
-	exports.default = {
-	  version: '1.0.0',
+        var _leaflet = __webpack_require__(1);
 
-	  Icon: _Icon2.default,
+        var _leaflet2 = _interopRequireDefault(_leaflet);
 
-	  icon: function icon(options) {
-	    return new _Icon2.default(options);
-	  }
-	};
+        function _interopRequireDefault(obj) {
+          return obj && obj.__esModule ? obj : { default: obj };
+        }
 
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
+        function _classCallCheck(instance, Constructor) {
+          if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+          }
+        }
 
-	'use strict';
+        function _possibleConstructorReturn(self, call) {
+          if (!self) {
+            throw new ReferenceError(
+              "this hasn't been initialised - super() hasn't been called"
+            );
+          }
+          return call &&
+            (typeof call === "object" || typeof call === "function")
+            ? call
+            : self;
+        }
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+        function _inherits(subClass, superClass) {
+          if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError(
+              "Super expression must either be null or a function, not " +
+                typeof superClass
+            );
+          }
+          subClass.prototype = Object.create(
+            superClass && superClass.prototype,
+            {
+              constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
+              }
+            }
+          );
+          if (superClass)
+            Object.setPrototypeOf
+              ? Object.setPrototypeOf(subClass, superClass)
+              : (subClass.__proto__ = superClass);
+        }
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+        var iconOptions = {
+          iconSize: [30, 50],
+          iconAnchor: [15, 50],
+          popupAnchor: [2, -40],
+          shadowAnchor: [39, 45],
+          shadowSize: [54, 51],
+          className: "vector-marker",
+          prefix: "fa",
+          spinClass: "fa-spin",
+          extraIconClasses: "",
+          extraDivClasses: "",
+          icon: "home",
+          markerColor: "blue",
+          iconColor: "white",
+          viewBox: "0 0 32 52"
+        };
 
-	var _leaflet = __webpack_require__(1);
+        var mapPin =
+          "M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z";
 
-	var _leaflet2 = _interopRequireDefault(_leaflet);
+        var Icon = (function(_Leaflet$Icon) {
+          _inherits(Icon, _Leaflet$Icon);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+          function Icon(options) {
+            _classCallCheck(this, Icon);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+            var _this = _possibleConstructorReturn(
+              this,
+              (Icon.__proto__ || Object.getPrototypeOf(Icon)).call(
+                this,
+                options
+              )
+            );
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+            _leaflet2.default.Util.setOptions(_this, iconOptions);
+            _leaflet2.default.Util.setOptions(_this, options);
+            return _this;
+          }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+          _createClass(Icon, [
+            {
+              key: "createIcon",
+              value: function createIcon(oldIcon) {
+                var div =
+                  oldIcon && oldIcon.tagName === "DIV"
+                    ? oldIcon
+                    : document.createElement("div");
+                var options = this.options;
+                var pin_path = options.map_pin || mapPin;
 
-	var iconOptions = {
-	  iconSize: [30, 50],
-	  iconAnchor: [15, 50],
-	  popupAnchor: [2, -40],
-	  shadowAnchor: [39, 45],
-	  shadowSize: [54, 51],
-	  className: 'vector-marker',
-	  prefix: 'fa',
-	  spinClass: 'fa-spin',
-	  extraIconClasses: '',
-	  extraDivClasses: '',
-	  icon: 'home',
-	  markerColor: 'blue',
-	  iconColor: 'white',
-	  viewBox: '0 0 32 52'
-	};
+                div.innerHTML =
+                  '<svg width="' +
+                  options.iconSize[0] +
+                  'px" height="' +
+                  options.iconSize[1] +
+                  'px" viewBox="' +
+                  options.viewBox +
+                  '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="' +
+                  pin_path +
+                  '" fill="' +
+                  options.markerColor +
+                  '"></path></svg>';
 
-	var mapPin = 'M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z';
+                if (options.icon) {
+                  div.appendChild(this._createInner());
+                }
 
-	var Icon = function (_Leaflet$Icon) {
-	  _inherits(Icon, _Leaflet$Icon);
+                options.className +=
+                  options.className.length > 0
+                    ? " " + options.extraDivClasses
+                    : options.extraDivClasses;
+                this._setIconStyles(div, "icon");
+                this._setIconStyles(div, "icon-" + options.markerColor);
+                return div;
+              }
+            },
+            {
+              key: "createShadow",
+              value: function createShadow() {
+                var div = document.createElement("div");
+                this._setIconStyles(div, "shadow");
+                return div;
+              }
+            },
+            {
+              key: "_createInner",
+              value: function _createInner() {
+                var i = document.createElement("i");
+                var options = this.options;
 
-	  function Icon(options) {
-	    _classCallCheck(this, Icon);
+                i.classList.add(options.prefix);
+                if (options.extraClasses) {
+                  i.classList.add(options.extraClasses);
+                }
+                if (options.prefix) {
+                  i.classList.add(options.prefix + "-" + options.icon);
+                } else {
+                  i.classList.add(options.icon);
+                }
+                if (options.spin && typeof options.spinClass === "string") {
+                  i.classList.add(options.spinClass);
+                }
+                if (options.iconColor) {
+                  if (
+                    options.iconColor === "white" ||
+                    options.iconColor === "black"
+                  ) {
+                    i.classList.add("icon-" + options.iconColor);
+                  } else {
+                    i.style.color = options.iconColor;
+                  }
+                }
+                if (options.iconSize) {
+                  i.style.width = options.iconSize[0] + "px";
+                }
+                return i;
+              }
+            },
+            {
+              key: "_setIconStyles",
+              value: function _setIconStyles(img, name) {
+                var options = this.options;
+                var size = _leaflet2.default.point(
+                  options[name === "shadow" ? "shadowSize" : "iconSize"]
+                );
+                var anchor = void 0;
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Icon).call(this, options));
+                if (name === "shadow") {
+                  anchor = _leaflet2.default.point(
+                    options.shadowAnchor || options.iconAnchor
+                  );
+                } else {
+                  anchor = _leaflet2.default.point(options.iconAnchor);
+                }
+                if (!anchor && size) {
+                  anchor = size.divideBy(2, true);
+                }
+                img.className =
+                  "vector-marker-" + name + " " + options.className;
+                if (anchor) {
+                  img.style.marginLeft = -anchor.x + "px";
+                  img.style.marginTop = -anchor.y + "px";
+                }
+                if (size) {
+                  img.style.width = size.x + "px";
+                  img.style.height = size.y + "px";
+                }
+              }
+            }
+          ]);
 
-	    _leaflet2.default.Util.setOptions(_this, iconOptions);
-	    _leaflet2.default.Util.setOptions(_this, options);
-	    return _this;
-	  }
+          return Icon;
+        })(_leaflet2.default.Icon);
 
-	  _createClass(Icon, [{
-	    key: 'createIcon',
-	    value: function createIcon(oldIcon) {
-	      var div = oldIcon && oldIcon.tagName === 'DIV' ? oldIcon : document.createElement('div');
-	      var options = this.options;
-	      var pin_path = options.map_pin || mapPin;
+        exports.default = Icon;
 
-	      div.innerHTML = '<svg width="' + options.iconSize[0] + 'px" height="' + options.iconSize[1] + 'px" viewBox="' + options.viewBox + '" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="' + pin_path + '" fill="' + options.markerColor + '"></path></svg>';
-
-	      if (options.icon) {
-	        div.appendChild(this._createInner());
-	      }
-
-	      options.className += options.className.length > 0 ? ' ' + options.extraDivClasses : options.extraDivClasses;
-	      this._setIconStyles(div, 'icon');
-	      this._setIconStyles(div, 'icon-' + options.markerColor);
-	      return div;
-	    }
-	  }, {
-	    key: 'createShadow',
-	    value: function createShadow() {
-	      var div = document.createElement('div');
-	      this._setIconStyles(div, 'shadow');
-	      return div;
-	    }
-	  }, {
-	    key: '_createInner',
-	    value: function _createInner() {
-	      var i = document.createElement('i');
-	      var options = this.options;
-
-	      i.classList.add(options.prefix);
-	      if (options.extraClasses) {
-	        i.classList.add(options.extraClasses);
-	      }
-	      if (options.icon.slice(0, options.prefix.length + 1) === options.prefix + '-') {
-	        i.classList.add(options.icon);
-	      } else {
-	        i.classList.add(options.prefix + '-' + options.icon);
-	      }
-	      if (options.spin && typeof options.spinClass === 'string') {
-	        i.classList.add(options.spinClass);
-	      }
-	      if (options.iconColor) {
-	        if (options.iconColor === 'white' || options.iconColor === 'black') {
-	          i.classList.add('icon-' + options.iconColor);
-	        } else {
-	          i.style.color = options.iconColor;
-	        }
-	      }
-	      if (options.iconSize) {
-	        i.style.width = options.iconSize[0] + 'px';
-	      }
-	      return i;
-	    }
-	  }, {
-	    key: '_setIconStyles',
-	    value: function _setIconStyles(img, name) {
-	      var options = this.options;
-	      var size = _leaflet2.default.point(options[name === 'shadow' ? 'shadowSize' : 'iconSize']);
-	      var anchor = void 0;
-
-	      if (name === 'shadow') {
-	        anchor = _leaflet2.default.point(options.shadowAnchor || options.iconAnchor);
-	      } else {
-	        anchor = _leaflet2.default.point(options.iconAnchor);
-	      }
-	      if (!anchor && size) {
-	        anchor = size.divideBy(2, true);
-	      }
-	      img.className = 'vector-marker-' + name + ' ' + options.className;
-	      if (anchor) {
-	        img.style.marginLeft = -anchor.x + 'px';
-	        img.style.marginTop = -anchor.y + 'px';
-	      }
-	      if (size) {
-	        img.style.width = size.x + 'px';
-	        img.style.height = size.y + 'px';
-	      }
-	    }
-	  }]);
-
-	  return Icon;
-	}(_leaflet2.default.Icon);
-
-	exports.default = Icon;
-
-/***/ }
-/******/ ])
+        /***/
+      }
+      /******/
+    ]
+  );
 });
-;
