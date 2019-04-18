@@ -13,9 +13,11 @@ const iconOptions = {
   extraIconClasses: "",
   extraDivClasses: "",
   icon: "home",
+  iconColor: "white",
+
+  // customisation of map pin options
   mapPin: "",
   markerColor: "blue",
-  iconColor: "white",
   viewBox: "0 0 32 52"
 };
 
