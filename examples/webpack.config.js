@@ -1,4 +1,3 @@
-/* eslint-disable */
 var webpack = require('webpack');
 
 module.exports = {

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var autoprefixer = require('autoprefixer');

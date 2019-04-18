@@ -14,15 +14,13 @@
     "build:dist": "webpack src/index.js dist/leaflet-vector-markers.js && webpack -p src/index.js dist/leaflet-vector-markers.min.js && webpack src/leaflet-vector-markers.scss dist/leaflet-vector-markers.css",
     "build": "npm run build:lib && npm run build:dist",
     "watch": "babel src --watch --out-dir lib",
-    "start": "npm run lint && npm run test && npm run build",
+    "start": "npm run test && npm run build",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "onchange": "onchange 'src/*.js' 'src/**/*.js' -- npm run lintAndTest",
+    "onchange": "onchange 'src/*.js' 'src/**/*.js' -- npm run test",
     "dev": "npm run watch & npm run onchange",
     "prepublish": "npm ls && npm start",
-    "examples": "webpack-dev-server --config ./examples/webpack.config.js",
-    "lint": "eslint ./src",
-    "lintAndTest": "npm run lint && jest"
+    "examples": "webpack-dev-server --config ./examples/webpack.config.js"
   },
   "dependencies": {
     "autoprefixer": "^6.3.7",
@@ -35,13 +33,11 @@
   "devDependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
-    "babel-eslint": "^6.0.4",
     "babel-jest": "^12.1.0",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
-    "eslint": "^2.11.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "jest-cli": "^12.1.1",
     "node-sass": "^4.11.0",
