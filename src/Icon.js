@@ -1,4 +1,5 @@
 import Leaflet from "leaflet";
+import { mapPin } from "./mapPin";
 
 const iconOptions = {
   iconSize: [30, 50],
@@ -17,9 +18,6 @@ const iconOptions = {
   iconColor: "white",
   viewBox: "0 0 32 52"
 };
-
-// prettier-ignore
-const mapPin = "M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z";
 
 class Icon extends Leaflet.Icon {
   constructor(options) {
