@@ -1,11 +1,11 @@
 {
-  "name": "Leaflet.vector-markers",
+  "name": "leaflet-vector-markers",
   "version": "0.0.6",
   "description": "Vector SVG markers for Leaflet, with an option for Font Awesome/Twitter Bootstrap icons.",
   "main": "dist/leaflet-vector-markers.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hiasinho/Leaflet.vector-markers.git"
+    "url": "https://github.com/puiutucutu/Leaflet.vector-markers"
   },
   "scripts": {
     "build": "webpack --progress --config ./webpack/webpack.base.js",
