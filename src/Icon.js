@@ -12,6 +12,7 @@ const iconOptions = {
   extraIconClasses: "",
   extraDivClasses: "",
   icon: "home",
+  mapPin: "",
   markerColor: "blue",
   iconColor: "white",
   viewBox: "0 0 32 52"
@@ -33,7 +34,7 @@ class Icon extends Leaflet.Icon {
         ? oldIcon
         : document.createElement("div");
     const options = this.options;
-    const pin_path = options.map_pin || mapPin;
+    const pin_path = options.mapPin || mapPin;
 
     // prettier-ignore
     div.innerHTML = `<svg width="${options.iconSize[0]}px" height="${options.iconSize[1]}px" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pin_path}" fill="${options.markerColor}"></path></svg>`
