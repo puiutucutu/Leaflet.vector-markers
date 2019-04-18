@@ -55,6 +55,8 @@
       markerColor: "red"
     });
 
-    L.marker([48.15491, 11.54183], { icon: RedMarker }).addTo(map);
+    L.marker([48.15491, 11.54183], { icon: RedMarker })
+      .addTo(map)
+      .bindPopup("sample popup");
   </script>
 </html>
