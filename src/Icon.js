@@ -2,11 +2,14 @@ import Leaflet from "leaflet";
 import { mapPin } from "./mapPin";
 
 const iconOptions = {
+  // options available in L.Marker
   iconSize: [30, 50],
   iconAnchor: [15, 50],
   popupAnchor: [2, -40],
   shadowAnchor: [39, 45],
   shadowSize: [54, 51],
+
+  // @todo sort
   className: "vector-marker",
   prefix: "fa",
   spinClass: "fa-spin",
