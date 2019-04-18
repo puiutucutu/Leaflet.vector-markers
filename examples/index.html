@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <!-- Load Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
+
+    <!-- Load Leaflet Vector Markers -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../dist/leaflet-vector-markers.css"
+    />
+    <script
+      type="application/javascript"
+      src="../dist/leaflet-vector-markers.js"
+    ></script>
+  </head>
+  <style>
+    #mapContainer {
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+  <body>
+    <div id="mapContainer"></div>
+  </body>
+  <script type="application/javascript">
+    const leafletMap = L.map("mapContainer").setView([51.505, -0.09], 13);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      minZoom: 5
+    }).addTo(leafletMap);
+  </script>
+</html>
