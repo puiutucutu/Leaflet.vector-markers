@@ -15,6 +15,20 @@ Version 0.0.6 of Leaflet.vector-markers is tested with:
 
 Please have a look at the examples or check out this example: http://codepen.io/anon/pen/Jdayb.
 
+
+### Notes
+
+http://localhost:8081/webpack-dev-server
+
+```js
+var svg = '' // insert your own svg
+var iconUrl = 'data:image/svg+xml;base64,' + btoa(svg);
+
+var icon = L.icon( {
+            iconUrl: iconUrl,
+        } );
+```
+
 ### Twitter Bootstrap/Font-Awesome icons
 This plugin depends on either Bootstrap or Font-Awesome for the rendering of the icons. See these urls for more information:
 

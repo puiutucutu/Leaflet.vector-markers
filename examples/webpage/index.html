@@ -2,12 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>leaflet-vector-markers example</title>
+    <title>leaflet-vector-markers - webpage loading example</title>
 
-    <!-- Font Awesome v4.7.0 -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+
+    <!-- Font Awesome v5.8.1 -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
     />
 
     <!-- Load Leaflet -->
@@ -27,11 +34,11 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="../dist/leaflet-vector-markers.css"
+      href="../../dist/leaflet-vector-markers.css"
     />
     <script
       type="application/javascript"
-      src="../dist/leaflet-vector-markers.js"
+      src="../../dist/leaflet-vector-markers.js"
     ></script>
   </head>
   <style>
@@ -44,18 +51,24 @@
     <div id="mapContainer"></div>
   </body>
   <script type="application/javascript">
-    const map = L.map("mapContainer").setView([48.1351, 11.582], 13);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    const mapContainer = document.getElementById("mapContainer");
+    const coords = [48.15491, 11.54183];
+    const initialZoom = 18;
+
+    const map = L.map("mapContainer").setView(coords, initialZoom);
+
+    // add tile layer to map
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       minZoom: 5
     }).addTo(map);
 
     // creates a red marker with the coffee icon
-    const RedMarker = L.VectorMarkers.icon({
+    const RedMarker = VectorMarkers.icon({
       icon: "coffee",
       markerColor: "red"
     });
 
-    L.marker([48.15491, 11.54183], { icon: RedMarker })
+    L.marker(coords, { icon: RedMarker, draggable: true })
       .addTo(map)
       .bindPopup("sample popup");
   </script>
