@@ -1,6 +1,10 @@
 import Leaflet from "leaflet";
 import * as mapPins from "./mapPins";
 
+// example importing svg icon as string
+const svgIconString = require("../svgicons/map-marker-solid.svg")
+console.log(svgIconString)
+
 const iconOptions = {
   // options available in L.Marker
   iconSize: [30, 50],
