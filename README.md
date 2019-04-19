@@ -30,7 +30,9 @@ The additional desired functionality is:
 
 Please have a look at the examples or check out this example: http://codepen.io/anon/pen/Jdayb.
 
+## Desired Features
 
+* native SVG inner shadow inside SVG marker pin
 
 ### Notes
 
