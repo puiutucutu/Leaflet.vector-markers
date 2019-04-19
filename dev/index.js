@@ -56,6 +56,7 @@ const CustomSvgMarkerPin = VectorMarkers.icon({
   // iconSize: [37.5, 50],
   markerColor: "rgb(255,0,0)",
   iconSize: [40,60],
+  extraDivClasses: "box-container"
 });
 
 L.marker([48.155, 11.543], { icon: CustomSvgMarkerPin, draggable: true }).addTo(
