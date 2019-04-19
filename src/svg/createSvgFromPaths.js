@@ -28,7 +28,7 @@ import { makeSvgPath } from "./makeSvgPath";
  * @param {String} width
  * @param {String} height
  * @param {String} viewBox
- * @param {String[]} paths
+ * @param {PathEntity[]} paths
  */
 function createSvgFromPaths(width, height, viewBox, paths) {
   const svg = createSvgElement();
