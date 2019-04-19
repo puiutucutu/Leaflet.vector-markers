@@ -1,137 +1,159 @@
 import Leaflet from "leaflet";
 import * as mapPins from "./mapPins";
-
-// example importing svg icon as string
-const svgIconString = require("../svgicons/map-marker-solid.svg")
-console.log(svgIconString)
+import { createSvg, makeSvgPath } from "./svg/utils";
 
 const iconOptions = {
-  // options available in L.Marker
+  /**
+   * native properties available in `L.Icon.Default`
+   */
+
   iconSize: [30, 50],
   iconAnchor: [15, 50],
   popupAnchor: [2, -40],
-  shadowAnchor: [39, 45],
-  shadowSize: [54, 51],
 
-  // @todo sort
-  className: "vector-marker",
-  prefix: "fa",
-  spinClass: "fa-spin",
-  extraIconClasses: "",
-  extraDivClasses: "",
-  icon: "home",
+  /**
+   * non-native properties
+   */
+
+  // icon
   iconColor: "white",
+  iconClasses: "",
+  iconFontSize: 14,
+  iconName: "home",
 
-  // customisation of map pin options
+  // customisation of map marker pin options
+  doesMarkerHaveShadow: true,
+  markerClasses: "",
   markerColor: "blue",
-  mapPin: mapPins.original.d,
-  viewBox: mapPins.original.viewBox
+  markerPinPath: mapPins.original.d,
+  markerPinViewBox: mapPins.original.viewBox,
+  rootClassName: "vector-marker"
 };
 
-class Icon extends Leaflet.Icon {
+/**
+ * Overwrites leaflet's own L.DivIcon class implementation.
+ *
+ * We are using the `L.DivIcon` as the base class because it is Leaflet's
+ * native feature-light implementation of the `L.Icon`.
+ *
+ * @external L.Icon
+ * @see {@link https://github.com/Leaflet/Leaflet/blob/master/src/layer/marker/Icon.js}
+ * @see {@link https://github.com/Leaflet/Leaflet/blob/master/src/layer/marker/Icon.Default.js}
+ */
+class Icon extends Leaflet.DivIcon {
   constructor(options) {
     super(options);
     Leaflet.Util.setOptions(this, iconOptions);
     Leaflet.Util.setOptions(this, options);
   }
 
+  /**
+   * @param {HTMLElement} [oldIcon]
+   * @return {HTMLElement}
+   */
   createIcon(oldIcon) {
+    const options = this.options;
+    const { rootClassName } = this.options;
+
     const div =
       oldIcon && oldIcon.tagName === "DIV"
         ? oldIcon
         : document.createElement("div");
-    const options = this.options;
-    const pinPath = options.mapPin;
 
-    const [width, height] = options.iconSize;
+    /**
+     * handle marker pin generation
+     */
 
-    // prettier-ignore
-    div.innerHTML = `<svg width="${width}" height="${height}" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pinPath}" fill="${options.markerColor}"></path></svg>`
+    const svg = this.createSvgMarkerPin();
+    div.innerHTML = svg.outerHTML; // inject html into div, forcing a render
+    div.classList.add(rootClassName);
 
-    if (options.icon) {
-      div.appendChild(this.createInner());
+    if (!!options.markerClasses) {
+      div.classList.add(...options.markerClasses);
     }
 
-    options.className +=
-      options.className.length > 0
-        ? " " + options.extraDivClasses
-        : options.extraDivClasses;
+    if (options.doesMarkerHaveShadow) {
+      div.classList.add("marker-shadow");
+    }
 
-    this.setIconStyles(div, "icon");
-    this.setIconStyles(div, `icon-${options.markerColor}`);
-    return div;
-  }
+    /**
+     * handle icon generation
+     */
 
-  createShadow() {
-    const div = document.createElement("div");
-    this.setIconStyles(div, "shadow");
+    div.appendChild(this.createInnerIcon());
+
+    this._setIconStyles(div, "icon");
+
     return div;
   }
 
   /**
-   * @private
+   * Programmatically create marker pin <svg>.
+   *
+   * @return {SVGElement}
    */
-  createInner() {
-    const i = document.createElement("i");
+  createSvgMarkerPin() {
     const options = this.options;
+    const [width, height] = options.iconSize;
 
-    // leaflet will error if an empty prefix is supplied, as in `""`
-    if (!!options.prefix) {
-      i.classList.add(options.prefix);
+    const svg = createSvg();
+    svg.setAttribute("width", width);
+    svg.setAttribute("height", height);
+    svg.setAttribute("viewBox", options.markerPinViewBox);
+
+    const svgMarkerPinPath = makeSvgPath(options.markerPinPath);
+    svgMarkerPinPath.setAttribute("fill", options.markerColor);
+
+    // add pin path to svg
+    svg.appendChild(svgMarkerPinPath);
+
+    return svg;
+  }
+
+  /**
+   * @private
+   * @return {HTMLElement}
+   */
+  createInnerIcon() {
+    const { iconName, iconClasses, iconColor, iconFontSize } = this.options;
+
+    const i = document.createElement("i");
+    i.classList.add("fa", `fa-${iconName}`);
+    i.style.fontSize = `${iconFontSize}px`;
+    i.style.width = `100%`;
+    i.style.height = `100%`;
+
+    if (!!iconClasses) {
+      i.classList.add(iconClasses);
     }
 
-    if (options.extraClasses) {
-      i.classList.add(options.extraClasses);
+    if (!!iconColor) {
+      i.style.color = iconColor;
     }
-    if (options.prefix) {
-      i.classList.add(options.prefix + "-" + options.icon);
-    } else {
-      i.classList.add(options.icon);
-    }
-    if (options.spin && typeof options.spinClass === "string") {
-      i.classList.add(options.spinClass);
-    }
-    if (options.iconColor) {
-      if (options.iconColor === "white" || options.iconColor === "black") {
-        i.classList.add("icon-" + options.iconColor);
-      } else {
-        i.style.color = options.iconColor;
-      }
-    }
-    if (options.iconSize) {
-      i.style.width = options.iconSize[0] + "px";
-    }
+
     return i;
   }
 
   /**
+   * @override
    * @private
-   * @param {HTMLElement} img
+   * @param {HTMLElement} element
    * @param {String} name
    */
-  setIconStyles(img, name) {
+  _setIconStyles(element, name) {
     const options = this.options;
-    const size = Leaflet.point(
-      options[name === "shadow" ? "shadowSize" : "iconSize"]
-    );
-    let anchor = void 0;
+    const size = Leaflet.point(options.iconSize);
+    const anchor = Leaflet.point(options.iconAnchor);
 
-    if (name === "shadow") {
-      anchor = Leaflet.point(options.shadowAnchor || options.iconAnchor);
-    } else {
-      anchor = Leaflet.point(options.iconAnchor);
-    }
-    if (!anchor && size) {
-      anchor = size.divideBy(2, true);
-    }
-    img.className = "vector-marker-" + name + " " + options.className;
+    // unchanged from original leaflet source
     if (anchor) {
-      img.style.marginLeft = -anchor.x + "px";
-      img.style.marginTop = -anchor.y + "px";
+      element.style.marginLeft = -anchor.x + "px";
+      element.style.marginTop = -anchor.y + "px";
     }
+
     if (size) {
-      img.style.width = size.x + "px";
-      img.style.height = size.y + "px";
+      element.style.width = size.x + "px";
+      element.style.height = size.y + "px";
     }
   }
 }

@@ -20,12 +20,16 @@ The additional desired functionality is:
 * to allow svg icons to embed properly inside an svg Leaflet marker
 * to allow svg icons standalone to act as the Leaflet marker
 
+### Goals
+
+* Aim is to only support Font Awesome and support it well instead of every icon library there is
 
 @TODO Review remaining readme
 
 ## Example
 
 Please have a look at the examples or check out this example: http://codepen.io/anon/pen/Jdayb.
+
 
 
 ### Notes
