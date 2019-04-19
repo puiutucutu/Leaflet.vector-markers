@@ -1,5 +1,8 @@
 import { SVG_NAMESPACE, XLINK_NAMESPACE } from "./constants";
 
+/**
+ * @return {SVGElement} - A `<svg></svg>` element.
+ */
 function createSvgElement() {
   const svg = document.createElementNS(SVG_NAMESPACE, "svg");
   svg.setAttribute("xmlns", SVG_NAMESPACE);
