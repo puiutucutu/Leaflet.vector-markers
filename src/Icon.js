@@ -39,8 +39,10 @@ class Icon extends Leaflet.Icon {
     const options = this.options;
     const pinPath = options.mapPin;
 
+    const [width, height] = options.iconSize;
+
     // prettier-ignore
-    div.innerHTML = `<svg width="${options.iconSize[0]}px" height="${options.iconSize[1]}px" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pinPath}" fill="${options.markerColor}"></path></svg>`
+    div.innerHTML = `<svg width="${width}" height="${height}" viewBox="${options.viewBox}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="${pinPath}" fill="${options.markerColor}"></path></svg>`
 
     if (options.icon) {
       div.appendChild(this.createInner());
