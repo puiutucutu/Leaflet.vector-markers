@@ -1,6 +1,6 @@
 import Leaflet from "leaflet";
 import * as mapPins from "./mapPins";
-import { createSvg, makeSvgPath } from "./svg/utils";
+import { createSvgElement, makeSvgPath } from "./svg";
 
 const iconOptions = {
   /**
@@ -96,7 +96,7 @@ class Icon extends Leaflet.DivIcon {
     const options = this.options;
     const [width, height] = options.iconSize;
 
-    const svg = createSvg();
+    const svg = createSvgElement();
     svg.setAttribute("width", width);
     svg.setAttribute("height", height);
     svg.setAttribute("viewBox", options.markerPinViewBox);
