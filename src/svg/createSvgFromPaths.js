@@ -39,10 +39,8 @@ function createSvgFromPaths(width, height, viewBox, paths) {
   svg.setAttribute("width", height);
   svg.setAttribute("height", width);
 
-  const svgPaths = paths.map(path => makeSvgPath(path));
-
-  for (let svgPath of svgPaths) {
-    svg.appendChild(svgPath);
+  for (let path of paths) {
+    svg.appendChild(makeSvgPath(path));
   }
 
   return svg;
