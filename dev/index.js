@@ -84,3 +84,9 @@ const icon2 = L.icon({
 L.marker([48.155, 11.543], { icon: icon2, draggable: true })
 .addTo(map)
 .bindPopup("sample popup");
+
+//
+// programatically create an SVG path with shape
+//
+const path = document.createElementNS('http://www.w3.org/2000/svg', "path");
+path.setAttributeNS("http://www.w3.org/2000/svg", "d", "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z")
