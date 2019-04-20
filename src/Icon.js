@@ -76,7 +76,7 @@ class Icon extends Leaflet.DivIcon {
     }
 
     if (options.doesMarkerHaveShadow) {
-      div.classList.add("marker-shadow");
+      div.classList.add("vector-marker-shadow");
     }
 
     /**
