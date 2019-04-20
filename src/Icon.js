@@ -1,6 +1,6 @@
 import Leaflet from "leaflet";
-import * as mapPins from "./mapPins";
 import { createSvgElement, createSvgPathElement } from "./svg";
+import { mapMarker } from "./mapMarker";
 
 const iconOptions = {
   /**
@@ -27,8 +27,8 @@ const iconOptions = {
   doesMarkerHaveShadow: true,
   markerClasses: "",
   markerColor: "blue",
-  markerPinPath: mapPins.original.d,
-  markerPinViewBox: mapPins.original.viewBox,
+  markerPinPath: mapMarker.d,
+  markerPinViewBox: mapMarker.viewBox,
   rootClassName: "vector-marker"
 };
 
