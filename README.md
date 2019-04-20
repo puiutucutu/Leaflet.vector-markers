@@ -139,3 +139,13 @@ The 'icon' property supports these strings:
 
 ## Contact
 - Website: http://www.hiasinho.com
+
+
+
+## Tools Reference
+
+* <https://color.adobe.com/create>
+* <https://designer.gravit.io>
+* <https://jsonformatter.org/xml-formatter>
+* <https://jakearchibald.github.io/svgomg/>
+  * for removing unneeded svg properties
