@@ -106,7 +106,7 @@ class Icon extends Leaflet.DivIcon {
     const markerPath = createSvgPathElement(options.markerPinPath);
     markerPath.setAttribute("fill", options.markerColor);
 
-    svg.appendChild(markerPath); // add pin path to svg
+    svg.appendChild(markerPath); // add path shape to svg
 
     return svg;
   }
