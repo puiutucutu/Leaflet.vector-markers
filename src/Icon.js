@@ -325,7 +325,7 @@ class Icon extends Leaflet.DivIcon {
 
   /**
    * The core of this method has been stripped down since we have opted to
-   * use a css based shadow method over a separate image shadow and no
+   * use a css based shadow method instead of a separate image shadow and no
    * longer need the functionality of the overridden method.
    *
    * @override
