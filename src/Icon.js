@@ -77,6 +77,8 @@ class Icon extends Leaflet.DivIcon {
      * prepare marker pin
      */
 
+    // @todo this is where we'd handle if the user passed in gradient marker options
+
     const svg = this.createSvgMarkerPin();
 
     // inject html into div, forcing a render - otherwise, Leaflet does not
