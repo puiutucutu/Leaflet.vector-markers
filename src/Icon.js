@@ -106,6 +106,20 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
+   * @param {MarkerGradient} markerGradient
+   * @return {boolean}
+   */
+  isValidMarkerGradient(markerGradient) {
+    const { name, zeroPercent, oneHundredPercent } = markerGradient;
+
+    if (!!name || !!zeroPercent || !!oneHundredPercent) {
+      throw new Error("All properties of the marker gradient must be supplied");
+    }
+
+    return true;
+  }
+
+  /**
    * Programmatically create marker pin <svg> element.
    *
    * @return {SVGElement}
