@@ -116,7 +116,7 @@ class Icon extends Leaflet.DivIcon {
    *
    * @return {boolean}
    */
-  static isValidMarkerGradient(markerGradientPreset) {
+  isValidMarkerGradient(markerGradientPreset) {
     return (
       !!markerGradientPreset.name &&
       !!markerGradientPreset.gradient.zeroPercent &&
@@ -130,7 +130,15 @@ class Icon extends Leaflet.DivIcon {
    * @return {SVGElement}
    */
   createSvgMarkerPin() {
-    return Icon.isValidMarkerGradient(this.options.markerGradient)
+    const { markerGradientPresetName } = this.options;
+    if (
+      !!markerGradientPresetName &&
+      markerGradientPresetNames.hasOwnProperty(markerGradientPresetName)
+    ) {
+      // create a generic pin using own properties
+    }
+
+    return this.isValidMarkerGradient(this.options.markerGradient)
       ? this.createSvgMarkerPinWithGradient()
       : this.createSvgMarkerPinGeneric();
   }
