@@ -297,8 +297,8 @@ class Icon extends Leaflet.DivIcon {
     const markerPath = createSvgPathElement(pathValue);
     markerPath.setAttribute("fill", `url(#${linearGradientId})`);
 
-    linearGradient.appendChild(stopTop);
     linearGradient.appendChild(stopBottom);
+    linearGradient.appendChild(stopTop);
     svg.appendChild(linearGradient);
     svg.appendChild(markerPath);
 
