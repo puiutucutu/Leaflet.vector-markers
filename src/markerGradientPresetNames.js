@@ -18,6 +18,7 @@
  */
 
 /**
+ * @todo change this to a <k,v> dictionary instead where k is name, and v is gradient properties
  * @type {MarkerGradientPreset[]}
  */
 const markerGradientPresetNames = [
@@ -37,4 +38,28 @@ const markerGradientPresetNames = [
   }
 ];
 
-export { markerGradientPresetNames };
+/**
+ * @param {MarkerGradientPreset[]} presets
+ * @return {String[]}
+ */
+const getAvailableGradientPresetNames = presets =>
+  Object.values(markerGradientPresetNames).reduce(
+    (acc, { name }) => [...acc, name],
+    []
+  );
+
+/**
+ * @param {String} name
+ * @return MarkerGradientPreset
+ */
+const getGradientPreset = name => {
+  return Object.values(markerGradientPresetNames).filter(
+    preset => preset.name === name
+  )[0];
+};
+
+export {
+  markerGradientPresetNames,
+  getAvailableGradientPresetNames,
+  getGradientPreset
+};

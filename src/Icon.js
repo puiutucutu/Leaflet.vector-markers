@@ -1,7 +1,11 @@
 import Leaflet from "leaflet";
 import { createSvgElement, createSvgPathElement } from "./svg";
 import { mapMarker } from "./mapMarker";
-import { markerGradientPresetNames } from "./markerGradientPresetNames";
+import {
+  getAvailableGradientPresetNames,
+  getGradientPreset,
+  markerGradientPresetNames
+} from "./markerGradientPresetNames";
 
 const iconOptions = {
   /**
@@ -130,17 +134,87 @@ class Icon extends Leaflet.DivIcon {
    * @return {SVGElement}
    */
   createSvgMarkerPin() {
-    const { markerGradientPresetName } = this.options;
-    if (
-      !!markerGradientPresetName &&
-      markerGradientPresetNames.hasOwnProperty(markerGradientPresetName)
-    ) {
-      // create a generic pin using own properties
+    /**
+     * @param {String} name
+     * @param {String[]} presets
+     * @return {Boolean}
+     */
+    function doesSuppliedGradientNameExist(name, presets) {
+      return !!name && presets.includes(name);
     }
 
-    return this.isValidMarkerGradient(this.options.markerGradient)
-      ? this.createSvgMarkerPinWithGradient()
-      : this.createSvgMarkerPinGeneric();
+    // need to check the following
+    //
+    // (1) did the user pass in one of the preset gradient names to use?
+    // (2) did the user pass in a custom gradient to use?
+    // (3) otherwise, create a generic marker
+
+    const options = this.options;
+    const [width, height] = options.iconSize;
+    const {
+      markerGradient,
+      markerGradientPresetName,
+      markerPinPath,
+      markerPinViewBox
+    } = options;
+
+    const availableGradientPresetNames = getAvailableGradientPresetNames(
+      markerGradientPresetNames
+    );
+
+    // (1) did the user pass in one of the preset gradient names to use?
+    if (
+      !!markerGradientPresetName &&
+      doesSuppliedGradientNameExist(
+        markerGradientPresetName,
+        availableGradientPresetNames
+      )
+    ) {
+      const presetMarkerGradient = getGradientPreset(markerGradientPresetName);
+
+      return this.createSvgMarkerPinWithGradient(
+        width,
+        height,
+        markerPinViewBox,
+        markerPinPath,
+        presetMarkerGradient.gradient.zeroPercent,
+        presetMarkerGradient.gradient.oneHundredPercent
+      );
+    }
+
+    // (2) did the user pass in a custom gradient to use?
+    // (3) otherwise, create a generic marker
+    if (this.isValidMarkerGradient(this.options.markerGradient)) {
+      // (2)
+      return this.createSvgMarkerPinWithGradient(
+        width,
+        height,
+        markerPinViewBox,
+        markerPinPath,
+        markerGradient.gradient.zeroPercent,
+        markerGradient.gradient.oneHundredPercent
+      );
+    } else {
+      // (3)
+      return this.createSvgMarkerPinGeneric();
+    }
+
+    // // @todo see about implementing this
+    // return this.isValidMarkerGradient(this.options.markerGradient) ||
+    //   doesSuppliedGradientNameExist(
+    //     markerGradientPresetName,
+    //     availableGradientPresetNames
+    //   )
+    //   ? this.createSvgMarkerPinWithGradient(
+    //       // @todo make it so the fn knows to extract data from options alone
+    //       width,
+    //       height,
+    //       markerPinViewBox,
+    //       markerPinPath,
+    //       markerGradient.gradient.zeroPercent,
+    //       markerGradient.gradient.oneHundredPercent
+    //     )
+    //   : this.createSvgMarkerPinGeneric();
   }
 
   /**
@@ -168,25 +242,31 @@ class Icon extends Leaflet.DivIcon {
   /**
    * Programmatically create a marker pin <svg> element with a gradient.
    *
-   * @param {MarkerGradientPreset} [markerGradient] Will optionally use the
-   * supplied argument, otherwise default to using class instance's options.
+   * @param {String} width
+   * @param {String} height
+   * @param {String} viewBox
+   * @param {String} pathValue
+   * @param {String} gradientStartValue
+   * @param {String} gradientStopValue
    * @return {SVGElement}
    */
-  createSvgMarkerPinWithGradient(markerGradient) {
-    const options = this.options;
-    const [width, height] = options.iconSize;
-
-    // prettier-ignore
-    const { zeroPercent, oneHundredPercent } = markerGradient || options.markerGradient;
-
+  createSvgMarkerPinWithGradient(
+    width,
+    height,
+    viewBox,
+    pathValue,
+    gradientStartValue,
+    gradientStopValue
+  ) {
     const svg = createSvgElement();
     svg.setAttribute("width", width);
     svg.setAttribute("height", height);
-    svg.setAttribute("viewBox", options.markerPinViewBox);
+    svg.setAttribute("viewBox", viewBox);
 
     // generate a unique id for each gradient id to avoid gradient id
     // collisions which will prevent gradients from working
-    const linearGradientId = Math.floor(Math.random() * 1e6);
+    const linearGradientId = String(Math.floor(Math.random() * 1e6));
+
     const linearGradient = document.createElement("linearGradient");
     linearGradient.setAttribute("id", linearGradientId);
     linearGradient.setAttribute("x1", "0.5");
@@ -194,27 +274,25 @@ class Icon extends Leaflet.DivIcon {
     linearGradient.setAttribute("y2", "1");
     linearGradient.setAttribute("gradientUnits", "userSpaceOnUse");
 
-    //
     // the `<linearGradient/>` scale property must match the last two digits
     // of the svg `viewBox` property, otherwise the gradient won't scale
     // properly and will look small
-    //
-    const [x, y] = options.markerPinViewBox.split(" ").slice(2);
+    const [x, y] = viewBox.split(" ").slice(2);
     linearGradient.setAttribute("gradientTransform", `scale(${x} ${y})`);
 
-    const gradientStopTop = document.createElement("stop");
-    gradientStopTop.setAttribute("offset", "0%");
-    gradientStopTop.setAttribute("stop-color", zeroPercent);
+    const stopTop = document.createElement("stop");
+    stopTop.setAttribute("offset", "0%");
+    stopTop.setAttribute("stop-color", gradientStartValue);
 
-    const gradientStopBottom = document.createElement("stop");
-    gradientStopBottom.setAttribute("offset", "100%");
-    gradientStopBottom.setAttribute("stop-color", oneHundredPercent);
+    const stopBottom = document.createElement("stop");
+    stopBottom.setAttribute("offset", "100%");
+    stopBottom.setAttribute("stop-color", gradientStopValue);
 
-    const markerPath = createSvgPathElement(options.markerPinPath);
+    const markerPath = createSvgPathElement(pathValue);
     markerPath.setAttribute("fill", `url(#${linearGradientId})`);
 
-    linearGradient.appendChild(gradientStopTop);
-    linearGradient.appendChild(gradientStopBottom);
+    linearGradient.appendChild(stopTop);
+    linearGradient.appendChild(stopBottom);
     svg.appendChild(linearGradient);
     svg.appendChild(markerPath);
 

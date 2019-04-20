@@ -46,10 +46,18 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
 });
 
 /**
- * Example of a creating a custom gradient marker.
+ * Example of a using a marker with a preset gradient.
  */
 const customGradientMarkerWithBoltIcon = VectorMarkers.icon({
   iconName: "bolt",
+  markerGradientPresetName: "blue"
+});
+
+/**
+ * Example of a creating a custom gradient marker.
+ */
+const presetGradientNameWithAirplane = VectorMarkers.icon({
+  iconName: "plane",
   markerGradient: {
     name: "black",
     gradient: {
@@ -81,7 +89,7 @@ L.marker([48.155, 11.543], { icon: greenCarMarker, draggable: true })
   .addTo(map)
   .bindPopup("green car marker");
 
-L.marker([48.1545, 11.5425], {
+L.marker([48.1539273809539, 11.542746927099248], {
   icon: customMarkerWithHomeIcon,
   draggable: true
 })
@@ -90,8 +98,15 @@ L.marker([48.1545, 11.5425], {
     "this marker uses a custom SVG for the pin and has increased marker pin and icon sizes"
   );
 
-L.marker([48.1548, 11.5429], {
+L.marker([48.15427571363835, 11.543408378175759], {
   icon: customGradientMarkerWithBoltIcon,
+  draggable: true
+})
+  .addTo(map)
+  .bindPopup("this marker uses a preset gradient");
+
+L.marker([48.15426020557778, 11.541592162814574], {
+  icon: presetGradientNameWithAirplane,
   draggable: true
 })
   .addTo(map)
