@@ -1,15 +1,35 @@
 import { markerGradientPresetNames } from "./markerGradientPresetNames";
+import { UnrecognizedMarkerGradientPresetError } from "./UnrecognizedMarkerGradientPresetError";
 
 /**
  * @param {String} name
- * @return {(MarkerGradientPreset | undefined |)}
+ * @return {MarkerGradientPreset}
+ * @throws {UnrecognizedMarkerGradientPresetError}
  */
 const getGradientPreset = name => {
-  if (markerGradientPresetNames.hasOwnProperty(name)) {
-    return markerGradientPresetNames[name];
+  if (!markerGradientPresetNames.hasOwnProperty(name)) {
+    throw new UnrecognizedMarkerGradientPresetError(
+      `Requested unrecognized marker gradient preset with name of ${name}`
+    );
   }
 
-  return void 0;
+  const found = markerGradientPresetNames[name];
+  const { top, bottom } = found;
+  return {
+    [name]: {
+      ...found,
+      top: `rgb(${top.join(",")})`,
+      bottom: `rgb(${bottom.join(",")})`
+    }
+  };
 };
+
+/**
+ * @param {Array} rgbArr
+ * @return {String}
+ */
+function arrayToRgbString(rgbArr) {
+  return `rgb(${rgbArr.join(",")})`;
+}
 
 export { getGradientPreset };

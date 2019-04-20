@@ -24,12 +24,12 @@
  */
 const markerGradientPresetNames = {
   blue: {
-    top: "rgb(49,138,176)",
-    bottom: "rgb(67,180,240)"
+    top: [49, 138, 176],
+    bottom: [67, 180, 24]
   },
   red: {
-    top: "rgb(255,119,43)",
-    bottom: "rgb(211,60,40)"
+    top: [255, 119, 43],
+    bottom: [211, 60, 4]
   }
 };
 
