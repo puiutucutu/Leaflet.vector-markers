@@ -166,15 +166,18 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
-   * Programmatically create marker pin <svg> element.
+   * Programmatically create a marker pin <svg> element with a gradient.
    *
+   * @param {MarkerGradientPreset} [markerGradient] Will optionally use the
+   * supplied argument, otherwise default to using class instance's options.
    * @return {SVGElement}
    */
-  createSvgMarkerPinWithGradient() {
+  createSvgMarkerPinWithGradient(markerGradient) {
     const options = this.options;
     const [width, height] = options.iconSize;
-    const { name } = options.markerGradient;
-    const { zeroPercent, oneHundredPercent } = options.markerGradient.gradient;
+
+    // prettier-ignore
+    const { zeroPercent, oneHundredPercent } = markerGradient || options.markerGradient;
 
     const svg = createSvgElement();
     svg.setAttribute("width", width);
