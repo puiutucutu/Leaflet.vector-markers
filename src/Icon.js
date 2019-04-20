@@ -153,13 +153,15 @@ class Icon extends Leaflet.DivIcon {
 
     // unchanged from original leaflet source
     if (anchor) {
-      element.style.marginLeft = `-${anchor.x}px`;
-      element.style.marginTop = `-${anchor.y}px`;
+      const { x, y } = anchor;
+      element.style.marginLeft = `-${x}px`;
+      element.style.marginTop = `-${y}px`;
     }
 
     if (size) {
-      element.style.width = `${size.x}px`;
-      element.style.height = `${size.y}px`;
+      const { x, y } = size;
+      element.style.width = `${x}px`;
+      element.style.height = `${y}px`;
     }
   }
 }
