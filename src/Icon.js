@@ -30,10 +30,16 @@ const iconOptions = {
   doesMarkerHaveShadow: true,
   markerClasses: "",
   markerColor: "blue",
+
+  /**
+   * @type {MarkerGradient}
+   */
   markerGradient: {
     name: "",
-    zeroPercent: "",
-    oneHundredPercent: ""
+    gradient: {
+      zeroPercent: "",
+      oneHundredPercent: ""
+    }
   },
   markerGradientPresetName: "",
 
@@ -77,8 +83,6 @@ class Icon extends Leaflet.DivIcon {
      * prepare marker pin
      */
 
-    // @todo this is where we'd handle if the user passed in gradient marker options
-
     const svg = this.createSvgMarkerPin();
 
     // inject html into div, forcing a render - otherwise, Leaflet does not
@@ -108,17 +112,27 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
-   * @param {MarkerGradient} markerGradient
+   * @param {MarkerGradientPreset} markerGradientPreset
+   *
    * @return {boolean}
    */
-  isValidMarkerGradient(markerGradient) {
-    const { name, zeroPercent, oneHundredPercent } = markerGradient;
+  static isValidMarkerGradient(markerGradientPreset) {
+    return (
+      !!markerGradientPreset.name &&
+      !!markerGradientPreset.gradient.zeroPercent &&
+      !!markerGradientPreset.gradient.oneHundredPercent
+    );
+  }
 
-    if (!!name || !!zeroPercent || !!oneHundredPercent) {
-      throw new Error("All properties of the marker gradient must be supplied");
-    }
-
-    return true;
+  /**
+   * Delegates which <svg> marker will be used.
+   *
+   * @return {SVGElement}
+   */
+  createSvgMarkerPin() {
+    return Icon.isValidMarkerGradient(this.options.markerGradient)
+      ? this.createSvgMarkerPinWithGradient()
+      : this.createSvgMarkerPinGeneric();
   }
 
   /**
@@ -126,7 +140,7 @@ class Icon extends Leaflet.DivIcon {
    *
    * @return {SVGElement}
    */
-  createSvgMarkerPin() {
+  createSvgMarkerPinGeneric() {
     const options = this.options;
     const [width, height] = options.iconSize;
 
@@ -139,6 +153,50 @@ class Icon extends Leaflet.DivIcon {
     markerPath.setAttribute("fill", options.markerColor);
 
     svg.appendChild(markerPath); // add path shape to svg
+
+    return svg;
+  }
+
+  /**
+   * Programmatically create marker pin <svg> element.
+   *
+   * @return {SVGElement}
+   */
+  createSvgMarkerPinWithGradient() {
+    const options = this.options;
+    const [width, height] = options.iconSize;
+    const { name } = options.markerGradient;
+    const { zeroPercent, oneHundredPercent } = options.markerGradient.gradient;
+
+    const svg = createSvgElement();
+    svg.setAttribute("width", width);
+    svg.setAttribute("height", height);
+    svg.setAttribute("viewBox", options.markerPinViewBox);
+
+    const linearGradientId = name;
+    const linearGradient = document.createElement("linearGradient");
+    linearGradient.setAttribute("id", linearGradientId);
+    linearGradient.setAttribute("x1", "0.5");
+    linearGradient.setAttribute("x2", "0.5");
+    linearGradient.setAttribute("y2", "1");
+    linearGradient.setAttribute("gradientUnits", "userSpaceOnUse");
+    linearGradient.setAttribute("gradientTransform", "scale(32 52)");
+
+    const gradientStopTop = document.createElement("stop");
+    gradientStopTop.setAttribute("offset", "0%");
+    gradientStopTop.setAttribute("stop-color", zeroPercent);
+
+    const gradientStopBottom = document.createElement("stop");
+    gradientStopBottom.setAttribute("offset", "100%");
+    gradientStopBottom.setAttribute("stop-color", oneHundredPercent);
+
+    const markerPath = createSvgPathElement(options.markerPinPath);
+    markerPath.setAttribute("fill", `url(#${linearGradientId})`);
+
+    linearGradient.appendChild(gradientStopTop);
+    linearGradient.appendChild(gradientStopBottom);
+    svg.appendChild(linearGradient);
+    svg.appendChild(markerPath);
 
     return svg;
   }

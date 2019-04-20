@@ -8,7 +8,8 @@ import "./custom-marker-style.scss";
 const customSvgPinProperties = {
   pin: {
     viewBox: "0 0 384 512",
-    path: "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z"
+    path:
+      "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z"
   }
 };
 
@@ -45,6 +46,20 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
   markerPinViewBox: customSvgPinProperties.pin.viewBox
 });
 
+/**
+ * Example of a creating a custom gradient marker.
+ */
+const customGradientMarkerWithBoltIcon = VectorMarkers.icon({
+  iconName: "bolt",
+  markerGradient: {
+    name: "red",
+    gradient: {
+      zeroPercent: "rgb(255,119,43)",
+      oneHundredPercent: "rgb(211,60,40)"
+    }
+  }
+});
+
 /* -------------------------------------------------------------------------- */
 /* (2) Instantiate Leaflet map and add your custom markers
 /* -------------------------------------------------------------------------- */
@@ -75,3 +90,10 @@ L.marker([48.1545, 11.5425], {
   .bindPopup(
     "this marker uses a custom SVG for the pin and has increased marker pin and icon sizes"
   );
+
+L.marker([48.1548, 11.5429], {
+  icon: customGradientMarkerWithBoltIcon,
+  draggable: true
+})
+  .addTo(map)
+  .bindPopup("this marker uses a custom gradient");
