@@ -1,11 +1,7 @@
 import Leaflet from "leaflet";
 import { createSvgElement, createSvgPathElement } from "./svg";
 import { mapMarker } from "./mapMarker";
-import { markerGradientPresetNames } from "./markers/markerGradientPresetNames";
-import {
-  getAvailableGradientPresetNames,
-  getGradientPreset
-} from "./markers/utils";
+import { gradients } from "./markers";
 
 const iconOptions = {
   /**
@@ -151,10 +147,7 @@ class Icon extends Leaflet.DivIcon {
       markerPinViewBox
     } = options;
 
-    // @todo look into this
-    const availableGradientPresetNames = getAvailableGradientPresetNames(
-      markerGradientPresetNames
-    );
+    const availableGradientPresetNames = gradients.getAvailableGradientPresetNames();
 
     // (1) did the user pass in one of the preset gradient names to use?
     if (
@@ -167,8 +160,11 @@ class Icon extends Leaflet.DivIcon {
       console.log(
         "%c USER PASSED IN ::: PRESET GRADIENT",
         "background: red; color: white; font-weight: bold"
-      )
-      const presetMarkerGradient = getGradientPreset(markerGradientPresetName);
+      );
+
+      const presetMarkerGradient = gradients.getGradientPreset(
+        markerGradientPresetName
+      );
 
       return this.createSvgMarkerPinWithGradient(
         width,
