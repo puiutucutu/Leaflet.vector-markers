@@ -181,7 +181,9 @@ class Icon extends Leaflet.DivIcon {
     svg.setAttribute("height", height);
     svg.setAttribute("viewBox", options.markerPinViewBox);
 
-    const linearGradientId = name;
+    // generate a unique id for each gradient id to avoid gradient id
+    // collisions which will prevent gradients from working
+    const linearGradientId = Math.floor(Math.random() * 1e6);
     const linearGradient = document.createElement("linearGradient");
     linearGradient.setAttribute("id", linearGradientId);
     linearGradient.setAttribute("x1", "0.5");
