@@ -82,7 +82,7 @@ class Icon extends Leaflet.DivIcon {
      * handle icon generation
      */
 
-    div.appendChild(this.createInnerIcon());
+    div.appendChild(this.createIconElement());
 
     this._setIconStyles(div, "icon");
 
@@ -116,7 +116,7 @@ class Icon extends Leaflet.DivIcon {
    * @private
    * @return {HTMLElement}
    */
-  createInnerIcon() {
+  createIconElement() {
     const { iconName, iconClasses, iconColor, iconFontSize } = this.options;
 
     const i = document.createElement("i");
