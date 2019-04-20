@@ -90,7 +90,7 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
-   * Programmatically create marker pin <svg>.
+   * Programmatically create marker pin <svg> element.
    *
    * @return {SVGElement}
    */
