@@ -2,6 +2,23 @@ import Leaflet from "leaflet";
 import { createSvgElement, createSvgPathElement } from "./svg";
 import { mapMarker } from "./mapMarker";
 
+const markerGradientPresetNames = [
+  {
+    name: "blue",
+    gradient: {
+      zeroPercent: "rgb(67, 180, 240)",
+      oneHundredPercent: "rgb(49, 138, 176)"
+    }
+  },
+  {
+    name: "red",
+    gradient: {
+      zeroPercent: "rgb(255, 119, 43)",
+      oneHundredPercent: "rgb(211, 60, 40)"
+    }
+  }
+];
+
 const iconOptions = {
   /**
    * native properties available in `L.Icon.Default`
@@ -29,9 +46,14 @@ const iconOptions = {
   doesMarkerHaveShadow: true,
   markerClasses: "",
   markerColor: "blue",
+  markerGradient: {
+    name: "",
+    zeroPercent: "",
+    oneHundredPercent: ""
+  },
   markerGradientPresetName: "",
-  markerGradientTopColor: "",
-  markerGradientBottomColor: "",
+
+  // for creating custom pin marker
   markerPinPath: mapMarker.d,
   markerPinViewBox: mapMarker.viewBox
 };
