@@ -1,9 +1,9 @@
-import { markerGradientPresetNames } from "./markerGradientPresetNames";
 import { getAvailableGradientPresetNames } from "./getAvailableGradientPresetNames";
 import { getGradientPreset } from "./getGradientPreset";
+import { markerGradientPresetNames } from "./markerGradientPresetNames";
 
 export {
-  markerGradientPresetNames,
   getAvailableGradientPresetNames,
-  getGradientPreset
+  getGradientPreset,
+  markerGradientPresetNames
 };
