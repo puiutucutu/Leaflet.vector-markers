@@ -17,6 +17,8 @@ const iconOptions = {
    * non-native properties
    */
 
+  rootClassName: "vector-marker",
+
   // icon
   iconColor: "white",
   iconClasses: "",
@@ -27,9 +29,11 @@ const iconOptions = {
   doesMarkerHaveShadow: true,
   markerClasses: "",
   markerColor: "blue",
+  markerGradientPresetName: "",
+  markerGradientTopColor: "",
+  markerGradientBottomColor: "",
   markerPinPath: mapMarker.d,
-  markerPinViewBox: mapMarker.viewBox,
-  rootClassName: "vector-marker"
+  markerPinViewBox: mapMarker.viewBox
 };
 
 /**
