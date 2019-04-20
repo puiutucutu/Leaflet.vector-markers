@@ -42,7 +42,15 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
   markerColor: "rgb(50, 150, 200)", // any valid property for css `color` attribute
   markerClasses: ["custom-marker-style"],
   markerPinPath: customSvgPinProperties.pin.path,
-  markerPinViewBox: customSvgPinProperties.pin.viewBox
+  markerPinViewBox: customSvgPinProperties.pin.viewBox,
+  markerGradient: {
+    name: "red",
+    gradient: {
+      zeroPercent: "rgb(255,119,43)",
+      oneHundredPercent: "rgb(211,60,40)"
+    }
+  }
+
 });
 
 /**

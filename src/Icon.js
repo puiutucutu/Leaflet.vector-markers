@@ -180,7 +180,12 @@ class Icon extends Leaflet.DivIcon {
     linearGradient.setAttribute("x2", "0.5");
     linearGradient.setAttribute("y2", "1");
     linearGradient.setAttribute("gradientUnits", "userSpaceOnUse");
-    linearGradient.setAttribute("gradientTransform", "scale(32 52)");
+
+    // the `<linearGradient/>` scale property must match the last two digits
+    // of the svg `viewBox` property, otherwise the gradient won't scale
+    // properly and will look small
+    const [x, y] = options.markerPinViewBox.split(" ").slice(2);
+    linearGradient.setAttribute("gradientTransform", `scale(${x} ${y})`);
 
     const gradientStopTop = document.createElement("stop");
     gradientStopTop.setAttribute("offset", "0%");
