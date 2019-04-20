@@ -39,11 +39,8 @@ const iconOptions = {
    * @type {MarkerGradient}
    */
   markerGradient: {
-    name: "",
-    gradient: {
-      bottom: "",
-      top: ""
-    }
+    bottom: "",
+    top: ""
   },
   markerGradientPresetName: "",
 
@@ -121,11 +118,7 @@ class Icon extends Leaflet.DivIcon {
    * @return {boolean}
    */
   isValidMarkerGradient(markerGradientPreset) {
-    return (
-      !!markerGradientPreset.name &&
-      !!markerGradientPreset.gradient.bottom &&
-      !!markerGradientPreset.gradient.top
-    );
+    return !!markerGradientPreset.bottom && !!markerGradientPreset.top;
   }
 
   /**
@@ -177,8 +170,8 @@ class Icon extends Leaflet.DivIcon {
         height,
         markerPinViewBox,
         markerPinPath,
-        presetMarkerGradient.gradient.top,
-        presetMarkerGradient.gradient.bottom
+        presetMarkerGradient.top,
+        presetMarkerGradient.bottom
       );
     }
 
@@ -197,8 +190,8 @@ class Icon extends Leaflet.DivIcon {
         height,
         markerPinViewBox,
         markerPinPath,
-        markerGradient.gradient.top,
-        markerGradient.gradient.bottom
+        markerGradient.top,
+        markerGradient.bottom
       );
     } else {
       // (3)
