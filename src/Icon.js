@@ -64,7 +64,7 @@ class Icon extends Leaflet.DivIcon {
         : document.createElement("div");
 
     /**
-     * handle marker pin generation
+     * prepare marker pin
      */
 
     const svg = this.createSvgMarkerPin();
@@ -80,7 +80,7 @@ class Icon extends Leaflet.DivIcon {
     }
 
     /**
-     * handle icon generation
+     * prepare icon
      */
 
     div.appendChild(this.createIconElement());
