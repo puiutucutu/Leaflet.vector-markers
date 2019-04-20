@@ -1,7 +1,8 @@
 Leaflet.vector-markers
 ======================
 
-50x82 leaflet icon size original
+* 50x82 leaflet icon size original img
+* 25x41 acutal pin marker size rendered on map
 
 Vector SVG markers for Leaflet, with an option for Font Awesome/Twitter Bootstrap/Maki icons.
 
