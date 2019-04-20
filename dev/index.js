@@ -31,10 +31,12 @@ const greenCarMarker = VectorMarkers.icon({
  * position depending on the change in size.
  */
 const customMarkerWithHomeIcon = VectorMarkers.icon({
+  iconSize: [50, 66],
+  iconAnchor: [25, 66], // this width is half the width of the `iconSize` width
+  popupAnchor: [0, -(66 * 0.786)],
+
   iconColor: "white", // any valid property for css `color` attribute
   iconFontSize: 24,
-  iconSize: [50, 60],
-  popupAnchor: [10, -40],
 
   doesMarkerHaveShadow: true,
   markerColor: "rgb(50, 150, 200)", // any valid property for css `color` attribute
