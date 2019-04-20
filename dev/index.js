@@ -20,7 +20,7 @@ const redCoffeeMarker = VectorMarkers.icon({
 const greenCarMarker = VectorMarkers.icon({
   iconName: "car",
   iconColor: "black",
-  markerColor: "#B4FB87"
+  markerColor: "#b4fb87"
 });
 
 /**
