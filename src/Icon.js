@@ -151,6 +151,7 @@ class Icon extends Leaflet.DivIcon {
       markerPinViewBox
     } = options;
 
+    // @todo look into this
     const availableGradientPresetNames = getAvailableGradientPresetNames(
       markerGradientPresetNames
     );
@@ -163,6 +164,10 @@ class Icon extends Leaflet.DivIcon {
         availableGradientPresetNames
       )
     ) {
+      console.log(
+        "%c USER PASSED IN ::: PRESET GRADIENT",
+        "background: red; color: white; font-weight: bold"
+      )
       const presetMarkerGradient = getGradientPreset(markerGradientPresetName);
 
       return this.createSvgMarkerPinWithGradient(
@@ -179,10 +184,9 @@ class Icon extends Leaflet.DivIcon {
     // (3) otherwise, create a generic marker
     if (this.isValidMarkerGradient(this.options.markerGradient)) {
       console.log(
-        "%c USER PASSED IN CUSTOM MARKER GRADIENT",
+        "%c USER PASSED IN ::: CUSTOM MARKER GRADIENT",
         "background: red; color: white; font-weight: bold"
       );
-      console.log(this.options.markerGradient);
 
       // (2)
       return this.createSvgMarkerPinWithGradient(
