@@ -7,7 +7,12 @@ const iconOptions = {
    * native properties available in `L.Icon.Default`
    */
 
-  iconSize: [30, 50],
+  /**
+   * note that this `iconSize` property is set to match the SVG marker's
+   * dimensions of 32px width, 52px height, and a viewBox of `0 0 32 52` -
+   * they must be identical
+   */
+  iconSize: [32, 52],
   iconAnchor: [15, 50],
   popupAnchor: [2, -40],
 
