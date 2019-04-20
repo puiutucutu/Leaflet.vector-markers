@@ -51,7 +51,7 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
 const customGradientMarkerWithBoltIcon = VectorMarkers.icon({
   iconName: "bolt",
   markerGradient: {
-    name: "red",
+    name: "black",
     gradient: {
       zeroPercent: "rgb(255,119,43)",
       oneHundredPercent: "rgb(211,60,40)"
