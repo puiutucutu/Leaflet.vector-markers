@@ -11,7 +11,7 @@ const iconOptions = {
   // dimensions of 32px width, 52px height, and a viewBox of `0 0 32 52`
   iconSize: [32, 52],
   iconAnchor: [16, 52], // this width is half the width of the `iconSize` width
-  popupAnchor: [0, -(52 * 0.786)],
+  popupAnchor: [0, -(52 * 0.786)], // offset the popup by a fib ratio to slightly cover the top of the marker
 
   /**
    * non-native properties
@@ -82,7 +82,7 @@ class Icon extends Leaflet.DivIcon {
      * handle icon generation
      */
 
-    div.appendChild(this.createIconElement());
+    // div.appendChild(this.createIconElement());
 
     this._setIconStyles(div, "icon");
 
