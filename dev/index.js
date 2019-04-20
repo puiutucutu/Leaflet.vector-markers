@@ -43,7 +43,6 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
       oneHundredPercent: "rgb(211,60,40)"
     }
   }
-
 });
 
 /**
