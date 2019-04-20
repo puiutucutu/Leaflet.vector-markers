@@ -2,6 +2,12 @@ import { markerGradientPresetNames } from "./markerGradientPresetNames";
 import { UnrecognizedMarkerGradientPresetError } from "./UnrecognizedMarkerGradientPresetError";
 
 /**
+ * @param {Array} rgbArr
+ * @return {String}
+ */
+const arrayToRgbString = rgbArr => `rgb(${rgbArr.join(",")})`;
+
+/**
  * @param {String} name
  * @return {MarkerGradientPreset}
  * @throws {UnrecognizedMarkerGradientPresetError}
@@ -18,18 +24,10 @@ const getGradientPreset = name => {
   return {
     [name]: {
       ...found,
-      top: `rgb(${top.join(",")})`,
-      bottom: `rgb(${bottom.join(",")})`
+      top: arrayToRgbString(top),
+      bottom: arrayToRgbString(bottom)
     }
   };
 };
-
-/**
- * @param {Array} rgbArr
- * @return {String}
- */
-function arrayToRgbString(rgbArr) {
-  return `rgb(${rgbArr.join(",")})`;
-}
 
 export { getGradientPreset };
