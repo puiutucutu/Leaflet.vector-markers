@@ -1,11 +1,11 @@
 import Leaflet from "leaflet";
 import { createSvgElement, createSvgPathElement } from "./svg";
 import { mapMarker } from "./mapMarker";
+import { markerGradientPresetNames } from "./markers/markerGradientPresetNames";
 import {
   getAvailableGradientPresetNames,
-  getGradientPreset,
-  markerGradientPresetNames
-} from "./markerGradientPresetNames";
+  getGradientPreset
+} from "./markers/utils";
 
 const iconOptions = {
   /**
