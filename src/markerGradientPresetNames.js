@@ -7,8 +7,8 @@
  * Prefer using rgb().
  *
  * @typedef {Object} MarkerGradient
- * @property {String} zeroPercent - This 0% property targets the top of the marker.
- * @property {String} oneHundredPercent - This 100% property targets the bottom of the marker.
+ * @property {String} bottom - This 0% property targets the top of the marker.
+ * @property {String} top - This 100% property targets the bottom of the marker.
  */
 
 /**
@@ -25,15 +25,15 @@ const markerGradientPresetNames = [
   {
     name: "blue",
     gradient: {
-      zeroPercent: "rgb(67, 180, 240)",
-      oneHundredPercent: "rgb(49, 138, 176)"
+      top: "rgb(49, 138, 176)",
+      bottom: "rgb(67, 180, 240)"
     }
   },
   {
     name: "red",
     gradient: {
-      zeroPercent: "rgb(255, 119, 43)",
-      oneHundredPercent: "rgb(211, 60, 40)"
+      top: "rgb(255, 119, 43)",
+      bottom: "rgb(211, 60, 40)"
     }
   }
 ];

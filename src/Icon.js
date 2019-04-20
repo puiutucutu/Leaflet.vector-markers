@@ -41,8 +41,8 @@ const iconOptions = {
   markerGradient: {
     name: "",
     gradient: {
-      zeroPercent: "",
-      oneHundredPercent: ""
+      bottom: "",
+      top: ""
     }
   },
   markerGradientPresetName: "",
@@ -123,8 +123,8 @@ class Icon extends Leaflet.DivIcon {
   isValidMarkerGradient(markerGradientPreset) {
     return (
       !!markerGradientPreset.name &&
-      !!markerGradientPreset.gradient.zeroPercent &&
-      !!markerGradientPreset.gradient.oneHundredPercent
+      !!markerGradientPreset.gradient.bottom &&
+      !!markerGradientPreset.gradient.top
     );
   }
 
@@ -177,22 +177,28 @@ class Icon extends Leaflet.DivIcon {
         height,
         markerPinViewBox,
         markerPinPath,
-        presetMarkerGradient.gradient.zeroPercent,
-        presetMarkerGradient.gradient.oneHundredPercent
+        presetMarkerGradient.gradient.bottom,
+        presetMarkerGradient.gradient.top
       );
     }
 
     // (2) did the user pass in a custom gradient to use?
     // (3) otherwise, create a generic marker
     if (this.isValidMarkerGradient(this.options.markerGradient)) {
+      console.log(
+        "%c USER PASSED IN CUSTOM MARKER GRADIENT",
+        "background: red; color: white; font-weight: bold"
+      );
+      console.log(this.options.markerGradient);
+
       // (2)
       return this.createSvgMarkerPinWithGradient(
         width,
         height,
         markerPinViewBox,
         markerPinPath,
-        markerGradient.gradient.zeroPercent,
-        markerGradient.gradient.oneHundredPercent
+        markerGradient.gradient.bottom,
+        markerGradient.gradient.top
       );
     } else {
       // (3)
@@ -211,8 +217,8 @@ class Icon extends Leaflet.DivIcon {
     //       height,
     //       markerPinViewBox,
     //       markerPinPath,
-    //       markerGradient.gradient.zeroPercent,
-    //       markerGradient.gradient.oneHundredPercent
+    //       markerGradient.gradient.bottom,
+    //       markerGradient.gradient.top
     //     )
     //   : this.createSvgMarkerPinGeneric();
   }
@@ -280,13 +286,13 @@ class Icon extends Leaflet.DivIcon {
     const [x, y] = viewBox.split(" ").slice(2);
     linearGradient.setAttribute("gradientTransform", `scale(${x} ${y})`);
 
-    const stopTop = document.createElement("stop");
-    stopTop.setAttribute("offset", "0%");
-    stopTop.setAttribute("stop-color", gradientStartValue);
-
     const stopBottom = document.createElement("stop");
     stopBottom.setAttribute("offset", "100%");
-    stopBottom.setAttribute("stop-color", gradientStopValue);
+    stopBottom.setAttribute("stop-color", gradientStartValue);
+
+    const stopTop = document.createElement("stop");
+    stopTop.setAttribute("offset", "0%");
+    stopTop.setAttribute("stop-color", gradientStopValue);
 
     const markerPath = createSvgPathElement(pathValue);
     markerPath.setAttribute("fill", `url(#${linearGradientId})`);
