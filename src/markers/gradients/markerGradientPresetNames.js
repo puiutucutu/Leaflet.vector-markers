@@ -7,8 +7,10 @@
  * Prefer using rgb().
  *
  * @typedef {Object} MarkerGradient
- * @property {String} top - Refers to the `stop-color` attribute set to `0%`
- * @property {String} bottom - Refers to the `stop-color` attribute set to `100%`
+ * @property {String} top - Refers to the `stop-color` attribute having
+ * `offset` of `0%`
+ * @property {String} bottom - Refers to the `stop-color` attribute having
+ * `offset` of `100%`
  */
 
 /**
