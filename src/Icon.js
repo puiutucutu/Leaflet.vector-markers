@@ -50,6 +50,7 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
+   * @override
    * @param {HTMLElement} [oldIcon]
    * @return {HTMLElement}
    */
