@@ -6,7 +6,7 @@ import { SVG_NAMESPACE } from "./constants";
  * to the path
  * @return {SVGPathElement}
  */
-function makeSvgPath(d, attributes = {}) {
+function createSvgPathElement(d, attributes = {}) {
   const path = document.createElementNS(SVG_NAMESPACE, "path");
   path.setAttribute("d", d);
 
@@ -19,4 +19,4 @@ function makeSvgPath(d, attributes = {}) {
   return path;
 }
 
-export { makeSvgPath };
+export { createSvgPathElement };

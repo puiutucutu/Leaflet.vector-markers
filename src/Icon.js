@@ -1,6 +1,6 @@
 import Leaflet from "leaflet";
 import * as mapPins from "./mapPins";
-import { createSvgElement, makeSvgPath } from "./svg";
+import { createSvgElement, createSvgPathElement } from "./svg";
 
 const iconOptions = {
   /**
@@ -101,7 +101,7 @@ class Icon extends Leaflet.DivIcon {
     svg.setAttribute("height", height);
     svg.setAttribute("viewBox", options.markerPinViewBox);
 
-    const svgMarkerPinPath = makeSvgPath(options.markerPinPath);
+    const svgMarkerPinPath = createSvgPathElement(options.markerPinPath);
     svgMarkerPinPath.setAttribute("fill", options.markerColor);
 
     // add pin path to svg

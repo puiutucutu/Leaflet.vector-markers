@@ -1,7 +1,7 @@
 import * as constants from "./constants";
 import { createSvgElement } from "./createSvgElement";
 import { createSvgFromPaths } from "./createSvgFromPaths";
-import { makeSvgPath } from "./makeSvgPath";
+import { createSvgPathElement } from "./createSvgPathElement";
 import { setAttribute } from "./setAttribute";
 import { setFillToCurrentColorOnPath } from "./setFillToCurrentColorOnPath";
 
@@ -9,7 +9,7 @@ export {
   constants,
   createSvgElement,
   createSvgFromPaths,
-  makeSvgPath,
+  createSvgPathElement,
   setAttribute,
   setFillToCurrentColorOnPath
 };

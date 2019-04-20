@@ -1,5 +1,5 @@
 import { createSvgElement } from "./createSvgElement";
-import { makeSvgPath } from "./makeSvgPath";
+import { createSvgPathElement } from "./createSvgPathElement";
 
 /**
  * @typedef {Object} Dictionary
@@ -35,7 +35,7 @@ function createSvgFromPaths(width, height, viewBox, paths) {
   svg.setAttribute("height", width);
 
   for (let { d, attributes } of paths) {
-    svg.appendChild(makeSvgPath(d, attributes));
+    svg.appendChild(createSvgPathElement(d, attributes));
   }
 
   return svg;
