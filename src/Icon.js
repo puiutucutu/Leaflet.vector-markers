@@ -73,6 +73,7 @@ class Icon extends Leaflet.DivIcon {
     // seem to work render the <svg> properly when using `div.appendChild(svg)`
     div.innerHTML = svg.outerHTML;
 
+    // start adding css classes to container
     div.classList.add(rootClassName);
 
     if (!!options.markerClasses) {
