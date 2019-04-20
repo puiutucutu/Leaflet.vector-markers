@@ -2,7 +2,7 @@ import { SVG_NAMESPACE } from "./constants";
 
 /**
  * @param {String} d - {@link https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d}
- * @param {Object<k,v>} [attributes] - Other valid svg path attributes to add
+ * @param {Dictionary} [attributes] - Other valid svg path attributes to add
  * to the path
  * @return {SVGPathElement}
  */
