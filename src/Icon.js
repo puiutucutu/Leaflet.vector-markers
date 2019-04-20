@@ -1,23 +1,7 @@
 import Leaflet from "leaflet";
 import { createSvgElement, createSvgPathElement } from "./svg";
 import { mapMarker } from "./mapMarker";
-
-const markerGradientPresetNames = [
-  {
-    name: "blue",
-    gradient: {
-      zeroPercent: "rgb(67, 180, 240)",
-      oneHundredPercent: "rgb(49, 138, 176)"
-    }
-  },
-  {
-    name: "red",
-    gradient: {
-      zeroPercent: "rgb(255, 119, 43)",
-      oneHundredPercent: "rgb(211, 60, 40)"
-    }
-  }
-];
+import { markerGradientPresetNames } from "./markerGradientPresetNames";
 
 const iconOptions = {
   /**
