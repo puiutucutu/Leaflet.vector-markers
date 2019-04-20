@@ -177,8 +177,8 @@ class Icon extends Leaflet.DivIcon {
         height,
         markerPinViewBox,
         markerPinPath,
-        presetMarkerGradient.gradient.bottom,
-        presetMarkerGradient.gradient.top
+        presetMarkerGradient.gradient.top,
+        presetMarkerGradient.gradient.bottom
       );
     }
 
@@ -197,8 +197,8 @@ class Icon extends Leaflet.DivIcon {
         height,
         markerPinViewBox,
         markerPinPath,
-        markerGradient.gradient.bottom,
-        markerGradient.gradient.top
+        markerGradient.gradient.top,
+        markerGradient.gradient.bottom
       );
     } else {
       // (3)
@@ -252,8 +252,8 @@ class Icon extends Leaflet.DivIcon {
    * @param {String} height
    * @param {String} viewBox
    * @param {String} pathValue
-   * @param {String} gradientStartValue
-   * @param {String} gradientStopValue
+   * @param {String} gradientTopValue
+   * @param {String} gradientBottomValue
    * @return {SVGElement}
    */
   createSvgMarkerPinWithGradient(
@@ -261,8 +261,8 @@ class Icon extends Leaflet.DivIcon {
     height,
     viewBox,
     pathValue,
-    gradientStartValue,
-    gradientStopValue
+    gradientTopValue,
+    gradientBottomValue
   ) {
     const svg = createSvgElement();
     svg.setAttribute("width", width);
@@ -287,12 +287,12 @@ class Icon extends Leaflet.DivIcon {
     linearGradient.setAttribute("gradientTransform", `scale(${x} ${y})`);
 
     const stopBottom = document.createElement("stop");
-    stopBottom.setAttribute("offset", "100%");
-    stopBottom.setAttribute("stop-color", gradientStartValue);
+    stopBottom.setAttribute("offset", "0%");
+    stopBottom.setAttribute("stop-color", gradientTopValue);
 
     const stopTop = document.createElement("stop");
-    stopTop.setAttribute("offset", "0%");
-    stopTop.setAttribute("stop-color", gradientStopValue);
+    stopTop.setAttribute("offset", "100%");
+    stopTop.setAttribute("stop-color", gradientBottomValue);
 
     const markerPath = createSvgPathElement(pathValue);
     markerPath.setAttribute("fill", `url(#${linearGradientId})`);
