@@ -109,7 +109,7 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
-   * @param {MarkerGradientPreset} markerGradientPreset
+   * @param {MarkerGradient} markerGradientPreset
    *
    * @return {boolean}
    */
