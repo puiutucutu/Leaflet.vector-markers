@@ -54,8 +54,8 @@ const customGradientMarkerWithBoltIcon = VectorMarkers.icon({
 const presetGradientNameWithAirplane = VectorMarkers.icon({
   iconName: "plane",
   markerGradient: {
-    top: "rgb(0,0,0)",
-    bottom: "rgb(255,119,43)"
+    top: "rgb(255,119,43)",
+    bottom: "rgb(0,0,0)"
   }
 });
 
