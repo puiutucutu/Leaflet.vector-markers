@@ -32,6 +32,8 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
 
   iconColor: "white", // any valid property for css `color` attribute
   iconFontSize: 24,
+  iconName: "",
+
 
   doesMarkerHaveShadow: true,
   markerColor: "rgb(50,150,200)", // any valid property for css `color` attribute

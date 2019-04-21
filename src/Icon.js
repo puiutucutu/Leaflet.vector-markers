@@ -102,7 +102,10 @@ class Icon extends Leaflet.DivIcon {
      * prepare icon
      */
 
-    div.appendChild(this.createIconElement());
+    // only create icon if user provided a name
+    if (!!options.iconName) {
+      div.appendChild(this.createIconElement());
+    }
 
     this._setIconStyles(div, "icon");
 
@@ -167,7 +170,8 @@ class Icon extends Leaflet.DivIcon {
     // (2) did the user pass in a custom gradient to use?
     // (3) otherwise, create a generic marker
     if (this.isValidMarkerGradient(this.options.markerGradient)) {
-      return this.createSvgMarkerPinWithGradient( // (2)
+      return this.createSvgMarkerPinWithGradient(
+        // (2)
         width,
         height,
         markerPinViewBox,
