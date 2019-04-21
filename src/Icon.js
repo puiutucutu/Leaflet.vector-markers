@@ -2,6 +2,7 @@ import Leaflet from "leaflet";
 import { createSvgElement, createSvgPathElement } from "./svg";
 import { mapMarker } from "./mapMarker";
 import { gradients } from "./markers";
+import { UnrecognizedMarkerGradientPresetError } from "./markers/gradients/UnrecognizedMarkerGradientPresetError";
 
 const iconOptions = {
   /**
@@ -123,20 +124,13 @@ class Icon extends Leaflet.DivIcon {
    * @return {SVGElement}
    */
   createSvgMarkerPin() {
-    /**
-     * @param {String} name
-     * @param {String[]} presets
-     * @return {Boolean}
-     */
-    function doesSuppliedGradientNameExist(name, presets) {
-      return !!name && presets.includes(name);
-    }
-
+    //
     // need to check the following
     //
     // (1) did the user pass in one of the preset gradient names to use?
     // (2) did the user pass in a custom gradient to use?
     // (3) otherwise, create a generic marker
+    //
 
     const options = this.options;
     const [width, height] = options.iconSize;
@@ -150,42 +144,30 @@ class Icon extends Leaflet.DivIcon {
     const availableGradientPresetNames = gradients.getAvailableGradientPresetNames();
 
     // (1) did the user pass in one of the preset gradient names to use?
-    if (
-      !!markerGradientPresetName &&
-      doesSuppliedGradientNameExist(
-        markerGradientPresetName,
-        availableGradientPresetNames
-      )
-    ) {
-      console.log(
-        "%c USER PASSED IN ::: PRESET GRADIENT",
-        "background: red; color: white; font-weight: bold"
-      );
-
-      const presetMarkerGradient = gradients.getGradientPreset(
-        markerGradientPresetName
-      );
-
-      return this.createSvgMarkerPinWithGradient(
-        width,
-        height,
-        markerPinViewBox,
-        markerPinPath,
-        presetMarkerGradient.top,
-        presetMarkerGradient.bottom
-      );
+    if (!!markerGradientPresetName) {
+      try {
+        const gradient = gradients.getMarkerGradient(markerGradientPresetName);
+        return this.createSvgMarkerPinWithGradient(
+          width,
+          height,
+          markerPinViewBox,
+          markerPinPath,
+          gradient.top,
+          gradient.bottom
+        );
+      } catch (e) {
+        console.log(
+          `%c WARNING - Requested gradient preset named "${markerGradientPresetName}" is not recognized. Defaults will be used to style the marker pin.`,
+          "background: yellow; color: black; font-weight: bold"
+        );
+        return this.createSvgMarkerPinGeneric();
+      }
     }
 
     // (2) did the user pass in a custom gradient to use?
     // (3) otherwise, create a generic marker
     if (this.isValidMarkerGradient(this.options.markerGradient)) {
-      console.log(
-        "%c USER PASSED IN ::: CUSTOM MARKER GRADIENT",
-        "background: red; color: white; font-weight: bold"
-      );
-
-      // (2)
-      return this.createSvgMarkerPinWithGradient(
+      return this.createSvgMarkerPinWithGradient( // (2)
         width,
         height,
         markerPinViewBox,
@@ -194,8 +176,7 @@ class Icon extends Leaflet.DivIcon {
         markerGradient.bottom
       );
     } else {
-      // (3)
-      return this.createSvgMarkerPinGeneric();
+      return this.createSvgMarkerPinGeneric(); // (3)
     }
 
     // // @todo see about implementing this

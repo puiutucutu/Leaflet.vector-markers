@@ -9,25 +9,21 @@ const arrayToRgbString = rgbArr => `rgb(${rgbArr.join(",")})`;
 
 /**
  * @param {String} name
- * @return {MarkerGradientPreset}
+ * @return {MarkerGradient}
  * @throws {UnrecognizedMarkerGradientPresetError}
  */
-const getGradientPreset = name => {
+const getMarkerGradient = name => {
   if (!markerGradientPresetNames.hasOwnProperty(name)) {
     throw new UnrecognizedMarkerGradientPresetError(
       `Requested unrecognized marker gradient preset with name of ${name}`
     );
   }
 
-  const found = markerGradientPresetNames[name];
-  const { top, bottom } = found;
+  const gradient = markerGradientPresetNames[name];
   return {
-    [name]: {
-      ...found,
-      top: arrayToRgbString(top),
-      bottom: arrayToRgbString(bottom)
-    }
+    top: arrayToRgbString(gradient.top),
+    bottom: arrayToRgbString(gradient.bottom)
   };
 };
 
-export { getGradientPreset };
+export { getMarkerGradient };
