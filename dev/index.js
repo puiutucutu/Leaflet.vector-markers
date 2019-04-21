@@ -26,9 +26,9 @@ const greenCarMarker = VectorMarkers.icon({
  * position depending on the change in size.
  */
 const customMarkerWithHomeIcon = VectorMarkers.icon({
-  iconSize: [50, 66],
-  iconAnchor: [25, 66], // this width is half the width of the `iconSize` width
-  popupAnchor: [0, -(66 * 0.786)],
+  iconSize: [48, 64],
+  iconAnchor: [24, 64], // this width is half the width of the `iconSize` width
+  popupAnchor: [0, -(64 * 0.786)],
 
   iconColor: "white", // any valid property for css `color` attribute
   iconFontSize: 24,
@@ -37,7 +37,7 @@ const customMarkerWithHomeIcon = VectorMarkers.icon({
   markerColor: "rgb(50,150,200)", // any valid property for css `color` attribute
   markerClasses: ["custom-marker-style"],
   markerPinPath: "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z",
-  markerPinViewBox: "0 0 384 512",
+  markerPinViewBox: "0 0 384 512"
 });
 
 /**
