@@ -17,8 +17,10 @@ const greenCarMarker = VectorMarkers.icon({
 });
 
 /**
- * Example of a custom sized pin. Note the explicit control over the
- * `iconSize` and `iconFontSize`.
+ * An example of a custom marker pin having (i) a client provided svg
+ * shape for the marker pin and (ii) explicit control over the size of the
+ * icon inside of the marker pin via the `iconSize` and `iconFontSize`
+ * properties.
  *
  * Note that you may or may not have to also adjust the popup anchor
  * position depending on the change in size.
