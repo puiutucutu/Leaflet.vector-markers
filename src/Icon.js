@@ -109,12 +109,12 @@ class Icon extends Leaflet.DivIcon {
   }
 
   /**
-   * @param {MarkerGradient} markerGradientPreset
+   * @param {MarkerGradient} markerGradient
    *
    * @return {boolean}
    */
-  isValidMarkerGradient(markerGradientPreset) {
-    return !!markerGradientPreset.bottom && !!markerGradientPreset.top;
+  isValidMarkerGradient(markerGradient) {
+    return !!markerGradient.bottom && !!markerGradient.top;
   }
 
   /**
